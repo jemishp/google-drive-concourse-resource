@@ -1,3 +1,4 @@
+#!/usr/bin/python
 import os
 from oauth2client.service_account import ServiceAccountCredentials
 from httplib2 import Http
