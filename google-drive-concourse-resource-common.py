@@ -5,17 +5,27 @@ from apiclient.discovery import build
 from apiclient import errors
 from apiclient import http
 
-scopes = ['https://www.googleapis.com/auth/drive']
-credentials = ServiceAccountCredentials.from_json_keyfile_name('concourse-resource.json', scopes=scopes)
-# Impersonate a user
-delegated_credentails = credentials.create_delegated('jpatel@pivotal.io')
-# Apply credential headers to all requests made by an an httlib2.Http instance
-http_auth = credentials.authorize(Http())
-# Build a service object for the drive API with the authenticated http instance
-gdriveservice = build('drive', 'v2', http=http_auth)
 
-oldq='0B_rb6msCq2WfSVk2QVl6UUk5cFk' # skahler's private folder with no access
+def getServiceInstance(user='jpatel', keyFile='concourse-resource.json'):
+    """Creates an authenticated service instance to use
+    Args:
+        user: User to impersonate in requests
+        keyFile: file that has the service account credentials
+    Returns:
+        An authenticated service instance
+    """
 
+    scopes = ['https://www.googleapis.com/auth/drive']
+    credentials = ServiceAccountCredentials.from_json_keyfile_name(keyFile, scopes=scopes)
+    # Impersonate a user
+    delegated_credentails = credentials.create_delegated(user + '@pivotal.io')
+    # Apply credential headers to all requests made by an an httlib2.Http instance
+    http_auth = credentials.authorize(Http())
+    # Build a service object for the drive API with the authenticated http instance
+    gdriveservice = build('drive', 'v2', http=http_auth)
+
+    oldq='0B_rb6msCq2WfSVk2QVl6UUk5cFk' # skahler's private folder with no access
+    return gdriveservice
 
 
 
