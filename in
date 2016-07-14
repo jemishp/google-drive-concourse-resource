@@ -7,7 +7,7 @@ fName='Test_V1'
 
 def main():
   drive_service = getServiceInstance()
-  fileID=listFilesinFolder(drive_service,fID,fName)
+  fileID=listFilesinFolder(drive_service,fID,fName,True)
   if fileID:
     print fileID
     getFile(drive_service,fID, fileID, True)

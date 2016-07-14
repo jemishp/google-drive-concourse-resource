@@ -44,7 +44,7 @@ def listFilesinFolder(service, folderID, fileName, verbose=False):
     drive_service=service
 
     if verbose:
-        print('Query = ' + folderID + ' in parents')
+        print('Query = ' + folderID + ' in parents and name = ' + fileName + ')
 
 
     results = drive_service.files().list(q="'" + folderID + "' in parents and name = '" + fileName + "'",
@@ -142,7 +142,7 @@ def getFile(service, folderID, fileID, verbose=False):
 
     if verbose:
         print(request)
-        
+
     media_request = http.MediaIoBaseDownload('test.txt', request)
 
     while True:
