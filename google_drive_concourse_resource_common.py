@@ -165,7 +165,7 @@ def getFile(service, folderID, fileID, verbose=False):
           print 'Download Complete'
           return
 
-def print_permissions(service, file_id):
+def get_permissions(service, file_id):
   """Retrieve a list of permissions.
 
   Args:
