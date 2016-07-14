@@ -180,4 +180,4 @@ def get_permissions(service, file_id):
     return permissions.get('items', [])
   except errors.HttpError, error:
     print ('An error occurred: {0}' .format(error)
-  return None
+    return None
