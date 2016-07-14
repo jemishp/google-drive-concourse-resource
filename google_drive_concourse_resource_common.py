@@ -47,11 +47,11 @@ def listFilesinFolder(service, folderID, fileName, verbose=False):
         print('Query = ' + folderID + ' in parents and name = ' + fileName + '')
 
 
-    results = drive_service.files().list(q="'" + folderID + "' in parents and (name = '" + fileName + "')",
+    results = drive_service.files().list(q="'" + folderID + "' in parents and name contains '" + fileName + "'",
                                         corpus='DEFAULT',
-                                        spaces='drive').execute()
+                                        spaces='drive',
+                                        maxResults=10).execute()
     if verbose:
-        print('Query = ' + folderID + ' in parents')
         print(results)
     items = results.get('items', [])
     if not items:
