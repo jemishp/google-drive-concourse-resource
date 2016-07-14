@@ -7,7 +7,7 @@ import sys
 
 
 fID='0BzoFwqMR_Vv4ZzZiSWJqcmozNzQ'
-fName='Test_V1'
+fName='test.tar.gz'
 
 def main():
   drive_service = getServiceInstance()
