@@ -28,8 +28,6 @@ def getServiceInstance(user='jpatel', keyFile='concourse-resource.json'):
     oldq='0B_rb6msCq2WfSVk2QVl6UUk5cFk' # skahler's private folder with no access
     return gdriveservice
 
-
-
 def listFilesinFolder(service, folderID, fileName, verbose=False):
     """Searches a google drive folder for a file
     Args:
@@ -166,18 +164,18 @@ def getFile(service, folderID, fileID, verbose=False):
           return
 
 def get_permissions(service, file_id):
-  """Retrieve a list of permissions.
+    """Retrieve a list of permissions.
 
-  Args:
+    Args:
     service: Drive API service instance.
     file_id: ID of the file to retrieve permissions for.
-  Returns:
+    Returns:
     List of permissions.
-  """
-  try:
-    print('Get_permissions called')
-    permissions = service.permissions().list(fileId=file_id).execute()
-    return permissions.get('items', [])
-  except errors.HttpError, error:
-    print ('An error occurred: {0}' .format(error)
-    return None
+    """
+    try:
+        print('Get_permissions called')
+        permissions = service.permissions().list(fileId=file_id).execute()
+        return permissions.get('items', [])
+    except errors.HttpError, error:
+        print ('An error occurred: {0}' .format(error)
+        return error
