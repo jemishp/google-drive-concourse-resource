@@ -1,1 +1,12 @@
-# Code to get an file from gDrive location
+from google_drive_concourse_resource_common import getServiceInstance
+from google_drive_concourse_resource_common import getFile
+
+"""Lists a version of a file from a google drive folder"""
+fID='0BzoFwqMR_Vv4ZzZiSWJqcmozNzQ'
+
+def main():
+  drive_service = getServiceInstance()
+  getFile(drive_service,fID, fileName, True)
+
+if __name__ == '__main__':
+  main()

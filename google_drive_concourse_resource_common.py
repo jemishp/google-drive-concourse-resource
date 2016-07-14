@@ -30,7 +30,7 @@ def getServiceInstance(user='jpatel', keyFile='concourse-resource.json'):
 
 
 
-def listFilesinFolder(service, folderID, verbose=True):
+def listFilesinFolder(service, folderID, verbose=False):
     drive_service=service
 
     if verbose:
@@ -71,12 +71,13 @@ def create_folder(service, folderName, parentID = None):
     file = drive_service.files().insert(body=body).execute()
     print ('Folder Name: {0} ID: {1}' .format(file.get('title'), file.get('id')))
 
-def putFile(service, folderID, filePath):
+def putFile(service, folderID, filePath, verbose=False):
     """Creates a File on a google drive folder.
     Args:
         service: google drive service instance to use
         folderID: Parent Folder's ID in which to create the new file
         filePath: Path to the file that needs to be put on google drive
+        verbose: print debugging information
     Returns:
         File name and ID of the newly created File
     To Do:
@@ -107,12 +108,13 @@ def putFile(service, folderID, filePath):
         print 'An error occured: %s' % error
         return None
 
-def getFile(service, folderID, fileName):
+def getFile(service, folderID, fileName, verbose=False):
     """Retrieves a File from a google drive Folder.
     Args:
         service: google drive service instance to use
         folderID: Parent Folder's ID from which to get the file
         fileName: file that needs to be retrieved from google drive
+        verbose: print debugging information
     Returns:
         File that was requested.
     To Do:
