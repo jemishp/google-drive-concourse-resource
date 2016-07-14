@@ -175,8 +175,9 @@ def get_permissions(service, file_id):
     List of permissions.
   """
   try:
+    print('Get_permissions called')
     permissions = service.permissions().list(fileId=file_id).execute()
     return permissions.get('items', [])
   except errors.HttpError, error:
-    print 'An error occurred: %s' % error
+    print ('An error occurred: {0}' .format(error)
   return None
