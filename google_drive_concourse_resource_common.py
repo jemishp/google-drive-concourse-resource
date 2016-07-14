@@ -96,8 +96,7 @@ def putFile(service, folderID, filePath, verbose=False):
         Possible check if File is not 0 length before putting it up on google drive
     """
     drive_service=service
-    #Don't need the file name but can use the Path
-    #f=os.path.basename(filePath)
+    f=os.path.basename(filePath)
     mime_type=''
 
     media_body = http.MediaFileUpload(filePath,mimetype=mime_type,resumable=True)
