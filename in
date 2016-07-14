@@ -1,7 +1,7 @@
 from google_drive_concourse_resource_common import getServiceInstance
 from google_drive_concourse_resource_common import listFilesinFolder
 from google_drive_concourse_resource_common import getFile
-from google_drive_concourse_resource_common import get_permissions
+from google_drive_concourse_resource_common import getPermissions
 from apiclient import errors
 import sys
 
@@ -14,7 +14,7 @@ def main():
   fileID=listFilesinFolder(drive_service,fID,fName,True)
   if fileID:
     print fileID
-    get_permissions(drive_service,fID)
+    getPermissions(drive_service,fID)
     response=getFile(drive_service,fID, fileID, True)
     if isinstance(response,errors.HttpError):
       print('File not retrieved')
