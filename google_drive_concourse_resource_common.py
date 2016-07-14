@@ -162,21 +162,3 @@ def getFile(service, folderID, fileID, verbose=False):
         if done:
           print 'Download Complete'
           return
-
-
-def getPermissions(service, file_id):
-    """Retrieve a list of permissions.
-
-    Args:
-    service: Drive API service instance.
-    file_id: ID of the file to retrieve permissions for.
-    Returns:
-    List of permissions.
-    """
-    try:
-        print('Get_permissions called')
-        permissions = service.permissions().list(fileId=file_id).execute()
-        return permissions.get('items', [])
-    except errors.HttpError, error:
-        print ('An error occurred: {0}' .format(error)
-        return error
