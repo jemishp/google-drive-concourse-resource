@@ -18,7 +18,7 @@ pFile='/tmp/test.tar.gz'
 
 def main():
   req=json.load(sys.stdin)
-  print(req)
+  print(req['source']['container'])
   drive_service = getServiceInstance()
   response=putFile(drive_service,fID, pFile)
   if isinstance(response,errors.HttpError):
