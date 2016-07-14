@@ -38,7 +38,7 @@ def listFilesinFolder(service, folderID, fileName, verbose=False):
         fileName: name of the file to search for
         verbose: print debugging information
     Returns:
-        File ID if the file was found and none if it was not
+        File ID of the file was found and none if it was not
     """
 
     drive_service=service
@@ -60,7 +60,7 @@ def listFilesinFolder(service, folderID, fileName, verbose=False):
     else:
         print('Files:')
         for item in items:
-            print('{0} ({1})'.format(item['title'], item['id']))
+            print('{0} ({1}) {2}'.format(item['title'], item['id'], item['mime_type']))
         return item['id']
 
 def create_folder(service, folderName, parentID = None):
