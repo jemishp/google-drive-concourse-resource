@@ -1,1 +1,2 @@
-concourse-resource.json
+./concourse-resource.json
+./client-secret.json
