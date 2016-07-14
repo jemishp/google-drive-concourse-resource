@@ -60,7 +60,7 @@ def listFilesinFolder(service, folderID, fileName, verbose=False):
     else:
         print('Files:')
         for item in items:
-            print('{0} ({1}) {2}'.format(item['title'], item['id'], item['mime_type']))
+            print('{0} ({1}) {2}'.format(item['title'], item['id'], item['mimeType']))
         return item['id']
 
 def create_folder(service, folderName, parentID = None):
