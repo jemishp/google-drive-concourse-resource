@@ -4,7 +4,7 @@ from google_drive_concourse_resource_common import getFile
 from apiclient import errors
 import sys
 
-"""Lists a version of a file from a google drive folder"""
+
 fID='0BzoFwqMR_Vv4ZzZiSWJqcmozNzQ'
 fName='Test_V1'
 

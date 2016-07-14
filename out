@@ -1,12 +1,21 @@
 from google_drive_concourse_resource_common import getServiceInstance
 from google_drive_concourse_resource_common import putFile
+from apiclient import errors
+import sys
 
-"""Lists a version of a file from a google drive folder"""
+
+"""puts a file onto a google drive folder"""
 fID='0BzoFwqMR_Vv4ZzZiSWJqcmozNzQ'
+pFile='/tmp/test.tar.gz'
 
 def main():
   drive_service = getServiceInstance()
-  putFile(drive_service,fID, fileName, True)
+  response=putFile(drive_service,fID, pFile, True)
+  if isinstance(resopnse,errors.HttpError):
+    print('File Not uploaded')
+    sys.exit(1)
+  else:
+    print ('File ID {0} ' .format(response.get('id')))
 
 if __name__ == '__main__':
   main()
