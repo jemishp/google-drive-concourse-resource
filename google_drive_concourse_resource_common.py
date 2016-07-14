@@ -16,7 +16,7 @@ def getServiceInstance(user='jpatel', keyFile='concourse-resource.json'):
         An authenticated service instance
     """
 
-    scopes = ['https://www.googleapis.com/auth/drive']
+    scopes = ['https://www.googleapis.com/auth/drive','https://www.googleapis.com/auth/drive.file']
     credentials = ServiceAccountCredentials.from_json_keyfile_name(keyFile, scopes=scopes)
     # Impersonate a user
     delegated_credentails = credentials.create_delegated(user + '@pivotal.io')
@@ -108,7 +108,7 @@ def putFile(service, folderID, filePath, perms, verbose=False):
     if folderID:
         body['parents'] = [{'id': folderID}]
         #Temporarily adding perms here
-        body['permissions'] = perms
+        #body['permissions'] = perms
 
     if verbose:
         #print('Body: ' .format(dir(body)))
