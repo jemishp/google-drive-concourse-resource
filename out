@@ -2,13 +2,28 @@ from google_drive_concourse_resource_common import getServiceInstance
 from google_drive_concourse_resource_common import putFile
 from apiclient import errors
 import sys
+import os
 
 
-"""puts a file onto a google drive folder"""
-fID='0BzoFwqMR_Vv4ZzZiSWJqcmozNzQ'
-pFile='/tmp/test.tar.gz'
+"""puts a file onto a google drive folder
+  Args:
+    fID: Folder ID to use for the uploaded file
+    pFile: Path to the local file to upload including extension
+  Returns:
+    File ID of the uploaded file or exits(1) with a message indicating no file uploaded
+"""
+
+fID = os.getenv('DRIVE_FOLDER_ID','')
+pFile = sys.argv[1]
+
+def usage():
+  print('This script needs an environment variable called DRIVE_FOLDER_ID and a path to a file to upload\
+  passed to is as an arguement')
 
 def main():
+  if fID is None or pFile is None:
+    usage()
+    sys.exit(1)
   drive_service = getServiceInstance()
   response=putFile(drive_service,fID, pFile)
   if isinstance(response,errors.HttpError):
