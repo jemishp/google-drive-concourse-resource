@@ -14,7 +14,8 @@ def main():
   fileID=listFilesinFolder(drive_service,fID,fName,True)
   if fileID:
     print fileID
-    getPermissions(drive_service,fID)
+    perms=getPermissions(drive_service,fID)
+    print('Perms: {0}'.format(perms))
     response=getFile(drive_service,fID, fileID, True)
     if isinstance(response,errors.HttpError):
       print('File not retrieved')
