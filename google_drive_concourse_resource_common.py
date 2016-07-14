@@ -113,8 +113,8 @@ def putFile(service, folderID, filePath, verbose=False):
 
     if verbose:
         #print('Body: ' .format(dir(body)))
-        print('Body: ' .format(body.items))
-        print('Media_Body: '.format(media_body.to_json))
+        print('Body: {0}' .format(body.items))
+        print('Media_Body: {0}'.format(media_body.to_json))
 
     try:
         file = drive_service.files().insert(
