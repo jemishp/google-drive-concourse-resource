@@ -138,10 +138,10 @@ def getFile(service, folderID, fileID, verbose=False):
     if verbose:
         print('Received FileID = ' + fileID )
 
-    request = drive_service.files().get_media(fileId=fileID)
+    response = drive_service.files().get_media(fileId=fileID)
 
     if verbose:
-        print(request.text)
+        print(dir(response))
 
     media_request = http.MediaIoBaseDownload('test.txt', request)
 
