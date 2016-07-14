@@ -14,7 +14,7 @@ def main():
   if fileID:
     print fileID
     response=getFile(drive_service,fID, fileID, True)
-    if isinstance(response,errors):
+    if isinstance(response,errors.HttpError):
       print('File not retrieved')
       sys.exit(1)
 
