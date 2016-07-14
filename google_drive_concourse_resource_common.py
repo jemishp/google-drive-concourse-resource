@@ -34,7 +34,6 @@ def listFilesinFolder(service, folderID, verbose=True):
     drive_service=service
     fID=folderID
 
-    query=' ' + fID +
     results = drive_service.files().list(q="'fID' + " in parents",
                                         corpus='DEFAULT',
                                         spaces='drive',
