@@ -3,10 +3,14 @@ from google_drive_concourse_resource_common import getFile
 
 """Lists a version of a file from a google drive folder"""
 fID='0BzoFwqMR_Vv4ZzZiSWJqcmozNzQ'
+fName='Test_V1'
 
 def main():
   drive_service = getServiceInstance()
-  getFile(drive_service,fID, fileName, True)
+  fileID=listFilesinFolder(drive_service,fID,fName)
+  if fileID:
+    print fileID
+    getFile(drive_service,fID, fileID, True)
 
 if __name__ == '__main__':
   main()

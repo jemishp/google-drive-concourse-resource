@@ -30,14 +30,24 @@ def getServiceInstance(user='jpatel', keyFile='concourse-resource.json'):
 
 
 
-def listFilesinFolder(service, folderID, verbose=False):
+def listFilesinFolder(service, folderID, fileName, verbose=False):
+    """Searches a google drive folder for a file
+    Args:
+        service: google drive service instance to use
+        folderID: the folder to lok for the file in
+        fileName: name of the file to search for
+        verbose: print debugging information
+    Returns:
+        File ID if the file was found and none if it was not
+    """
+
     drive_service=service
 
     if verbose:
         print('Query = ' + folderID + ' in parents')
 
-    #results = drive_service.files().list(q="'0BzoFwqMR_Vv4ZzZiSWJqcmozNzQ' in parents",
-    results = drive_service.files().list(q="'" + folderID + "' in parents",
+
+    results = drive_service.files().list(q="'" + folderID + "' in parents and name = '" + fileName + "'",
                                         corpus='DEFAULT',
                                         spaces='drive',
                                         maxResults=10).execute()
@@ -47,10 +57,12 @@ def listFilesinFolder(service, folderID, verbose=False):
     items = results.get('items', [])
     if not items:
         print('No files found.')
+        return None
     else:
         print('Files:')
         for item in items:
             print('{0} ({1})'.format(item['title'], item['id']))
+        return item['id']
 
 def create_folder(service, folderName, parentID = None):
     """Creates a folder to use.
@@ -108,12 +120,12 @@ def putFile(service, folderID, filePath, verbose=False):
         print 'An error occured: %s' % error
         return None
 
-def getFile(service, folderID, fileName, verbose=False):
+def getFile(service, folderID, fileID, verbose=False):
     """Retrieves a File from a google drive Folder.
     Args:
         service: google drive service instance to use
         folderID: Parent Folder's ID from which to get the file
-        fileName: file that needs to be retrieved from google drive
+        fileID: Id of the file that needs to be retrieved from google drive
         verbose: print debugging information
     Returns:
         File that was requested.
@@ -123,7 +135,14 @@ def getFile(service, folderID, fileName, verbose=False):
     """
     drive_service=service
 
-    request = drive_service.files().get_media(fileTitle=fileName)
+    if verbose:
+        print('Received FileID = ' + fileID )
+
+    request = drive_service.files().get_media(fileId=fileID)
+
+    if verbose:
+        print(request)
+        
     media_request = http.MediaIoBaseDownload('test.txt', request)
 
     while True:
