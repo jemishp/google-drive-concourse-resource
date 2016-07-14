@@ -100,7 +100,7 @@ def putFile(service, folderID, filePath, verbose=False):
     #f=os.path.basename(filePath)
     mime_type=''
 
-    media_body = http.MediaFileUpload(f,mimetype=mime_type,resumable=True)
+    media_body = http.MediaFileUpload(filePath,mimetype=mime_type,resumable=True)
     body = {
       'title': f,
       'description': 'Test',
