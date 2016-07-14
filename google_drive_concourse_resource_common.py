@@ -32,16 +32,17 @@ def getServiceInstance(user='jpatel', keyFile='concourse-resource.json'):
 
 def listFilesinFolder(service, folderID, verbose=True):
     drive_service=service
-    fID=folderID
-    if verbose:
-        print('Query = ' + fID + 'in parents')
 
-    results = drive_service.files().list(q=fID + 'in parents',
+    if verbose:
+        print('Query = ' + fID + ' in parents')
+
+    results = drive_service.files().list(q="0BzoFwqMR_Vv4ZzZiSWJqcmozNzQ in parents",
+    results = drive_service.files().list(q="" + folderID + " in parents",
                                         corpus='DEFAULT',
                                         spaces='drive',
                                         maxResults=10).execute()
     if verbose:
-        print('Query = ' + fID + 'in parents')
+        print('Query = ' + fID + ' in parents')
         print(results)
     items = results.get('items', [])
     if not items:
