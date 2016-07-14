@@ -109,12 +109,12 @@ def putFile(service, folderID, filePath, verbose=False):
     if folderID:
         body['parents'] = [{'id': folderID}]
         #Temporarily adding perms here
-        body['permissions'] = [{'role': 'owner','role': 'user'}]
+        body['permissions'] = [{'role': 'owner','role': 'domain'}]
 
     if verbose:
         #print('Body: ' .format(dir(body)))
-        print(dir(body))
-        print(dir(media_body))
+        print('Body: ' .format(body.items))
+        print('Media_Body: '.format(media_body.to_json))
 
     try:
         file = drive_service.files().insert(
