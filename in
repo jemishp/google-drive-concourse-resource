@@ -1,4 +1,5 @@
 from google_drive_concourse_resource_common import getServiceInstance
+from google_drive_concourse_resource_common import listFilesinFolder
 from google_drive_concourse_resource_common import getFile
 
 """Lists a version of a file from a google drive folder"""
