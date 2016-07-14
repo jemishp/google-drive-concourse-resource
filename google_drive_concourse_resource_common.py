@@ -158,7 +158,7 @@ def getFile(service, folderID, fileID, fileName, verbose=False):
         Possible check if File is not 0 length before putting it up on google drive
     """
     drive_service=service
-
+    local_fd=open(fileName,'w')
     if verbose:
         print('Received FileID = ' + fileID )
 
@@ -168,7 +168,7 @@ def getFile(service, folderID, fileID, fileName, verbose=False):
         print('Headers: {0}' .format(request.headers))
         print('URI: {0}' .format(request.uri))
 
-    media_request = http.MediaIoBaseDownload(fileName, request)
+    media_request = http.MediaIoBaseDownload(local_fd, request)
 
     while True:
         try:
