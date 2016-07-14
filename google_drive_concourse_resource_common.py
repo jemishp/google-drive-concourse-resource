@@ -124,6 +124,23 @@ def putFile(service, folderID, filePath, verbose=False):
         print 'An error occured: %s' % error
         return error
 
+def getPermissions(service, file_id):
+    """Retrieve a list of permissions.
+    Args:
+    service: Drive API service instance.
+    file_id: ID of the file to retrieve permissions for.
+    Returns:
+    List of permissions.
+    """
+    try:
+        print('Get_permissions called')
+        permissions = service.permissions().list(fileId=file_id).execute()
+        return permissions.get('items', [])
+    except errors.HttpError, error:
+        print ('An error occurred: {0}' .format(error)
+        return error
+
+
 def getFile(service, folderID, fileID, verbose=False):
     """Retrieves a File from a google drive Folder. Currently we only
     support binary files so you can not get docs,spreadhseets, etc.
