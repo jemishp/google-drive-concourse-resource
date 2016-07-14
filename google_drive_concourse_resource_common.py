@@ -90,15 +90,16 @@ def putFile(service, folderID, filePath, verbose=False):
         filePath: Path to the file that needs to be put on google drive
         verbose: print debugging information
     Returns:
-        File name and ID of the newly created File
+        File name and ID of the newly created File or error if error occured
     To Do:
         Check if File and folder exist
         Possible check if File is not 0 length before putting it up on google drive
     """
     drive_service=service
-    f=os.path.basename(filePath)
+    #Don't need the file name but can use the Path
+    #f=os.path.basename(filePath)
     mime_type=''
-    
+
     media_body = http.MediaFileUpload(f,mimetype=mime_type,resumable=True)
     body = {
       'title': f,
@@ -109,6 +110,10 @@ def putFile(service, folderID, filePath, verbose=False):
     if folderID:
         body['parents'] = [{'id': folderID}]
 
+    if verbose:
+        print('Body: ' .format(body))
+        print('Media_Body: ' .format(media_body))
+
     try:
         file = drive_service.files().insert(
                                             body=body,
@@ -118,7 +123,7 @@ def putFile(service, folderID, filePath, verbose=False):
         return file
     except errors.HttpError, error:
         print 'An error occured: %s' % error
-        return None
+        return error
 
 def getFile(service, folderID, fileID, verbose=False):
     """Retrieves a File from a google drive Folder. Currently we only

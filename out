@@ -11,7 +11,7 @@ pFile='/tmp/test.tar.gz'
 def main():
   drive_service = getServiceInstance()
   response=putFile(drive_service,fID, pFile, True)
-  if isinstance(resopnse,errors.HttpError):
+  if isinstance(response,errors.HttpError):
     print('File Not uploaded')
     sys.exit(1)
   else:
