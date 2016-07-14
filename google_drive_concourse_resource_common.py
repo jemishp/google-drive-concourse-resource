@@ -137,9 +137,8 @@ def getPermissions(service, file_id):
         permissions = service.permissions().list(fileId=file_id).execute()
         return permissions.get('items', [])
     except errors.HttpError, error:
-        print ('An error occurred: {0}' .format(error)
+        print ('An error occurred: {0}' .format(error))
         return error
-
 
 def getFile(service, folderID, fileID, verbose=False):
     """Retrieves a File from a google drive Folder. Currently we only
