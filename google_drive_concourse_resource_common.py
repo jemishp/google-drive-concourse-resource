@@ -60,7 +60,7 @@ def listFilesinFolder(service, folderID, fileName, verbose=False):
     else:
         print('Files:')
         for item in items:
-            print('{0} ({1}) {2}'.format(item['title'], item['id'], item['mimeType']))    
+            print('{0} ({1}) {2}'.format(item['title'], item['id'], item['mimeType']))
         return item['id']
 
 def create_folder(service, folderName, parentID = None):
@@ -165,7 +165,7 @@ def getFile(service, folderID, fileID, verbose=False):
           print 'Download Complete'
           return
 
-def get_permissions(service, file_id):
+def print_permissions(service, file_id):
   """Retrieve a list of permissions.
 
   Args:
