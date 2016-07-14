@@ -1,5 +1,6 @@
 from google_drive_concourse_resource_common import getServiceInstance
 from google_drive_concourse_resource_common import putFile
+from google_drive_concourse_resource_common import getPermissions
 from apiclient import errors
 import sys
 
@@ -10,7 +11,8 @@ pFile='/tmp/test.tar.gz'
 
 def main():
   drive_service = getServiceInstance()
-  response=putFile(drive_service,fID, pFile, True)
+  perms=getPermissions(drive_service,fID)
+  response=putFile(drive_service,fID, pFile, perms, True)
   if isinstance(response,errors.HttpError):
     print('File Not uploaded')
     sys.exit(1)

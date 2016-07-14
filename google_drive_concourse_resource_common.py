@@ -80,12 +80,13 @@ def create_folder(service, folderName, parentID = None):
     file = drive_service.files().insert(body=body).execute()
     print ('Folder Name: {0} ID: {1}' .format(file.get('title'), file.get('id')))
 
-def putFile(service, folderID, filePath, verbose=False):
+def putFile(service, folderID, filePath, perms, verbose=False):
     """Creates a File on a google drive folder.
     Args:
         service: google drive service instance to use
         folderID: Parent Folder's ID in which to create the new file
         filePath: Path to the file that needs to be put on google drive
+        perms: Permissions object to use for the uploading the file
         verbose: print debugging information
     Returns:
         File name and ID of the newly created File or error if error occured
@@ -107,7 +108,7 @@ def putFile(service, folderID, filePath, verbose=False):
     if folderID:
         body['parents'] = [{'id': folderID}]
         #Temporarily adding perms here
-        body['permissions'] = [{'role': 'owner','type': 'domain'}]
+        body['permissions'] = perms
 
     if verbose:
         #print('Body: ' .format(dir(body)))
