@@ -112,8 +112,9 @@ def putFile(service, folderID, filePath, verbose=False):
         body['permissions'] = [{'role': 'owner','role': 'user'}]
 
     if verbose:
-        print('Body: ' .format(dir(body)))
-        print('Media_Body: ' .format(dir(media_body)))
+        #print('Body: ' .format(dir(body)))
+        print(dir(body))
+        print(dir(media_body))
 
     try:
         file = drive_service.files().insert(
