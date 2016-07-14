@@ -42,7 +42,7 @@ def listFilesinFolder(service, folderID, verbose=True):
                                         spaces='drive',
                                         maxResults=10).execute()
     if verbose:
-        print('Query = ' + fID + ' in parents')
+        print('Query = ' + folderID + ' in parents')
         print(results)
     items = results.get('items', [])
     if not items:
