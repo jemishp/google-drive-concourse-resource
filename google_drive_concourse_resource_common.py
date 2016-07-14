@@ -97,12 +97,13 @@ def putFile(service, folderID, filePath, verbose=False):
     """
     drive_service=service
     f=os.path.basename(filePath)
-
+    mime_type=''
+    
     media_body = http.MediaFileUpload(f,mimetype=mime_type,resumable=True)
     body = {
       'title': f,
       'description': 'Test',
-      'mime_type': mime_type
+      'mimeType': mime_type
     }
     # Set the parent Folder
     if folderID:
