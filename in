@@ -1,7 +1,7 @@
 from google_drive_concourse_resource_common import getServiceInstance
 from google_drive_concourse_resource_common import listFilesinFolder
 from google_drive_concourse_resource_common import getFile
-from google_drive_concourse_resource_common import getPermissions
+from google_drive_concourse_resource_common import getFileMetadata
 from apiclient import errors
 import sys
 
@@ -11,12 +11,10 @@ fName='test.tar.gz'
 
 def main():
   drive_service = getServiceInstance()
-  fileID=listFilesinFolder(drive_service,fID,fName,True)
-  if fileID:
-    print fileID
-    perms=getPermissions(drive_service,fID)
-    print('Perms: {0}'.format(perms))
-    response=getFile(drive_service,fID, fileID, True)
+  file=listFilesinFolder(drive_service,fID,fName)
+  if file:
+    print file['title']
+    response=getFile(drive_service,fID, file['id'], file['title'])
     if isinstance(response,errors.HttpError):
       print('File not retrieved')
       sys.exit(1)

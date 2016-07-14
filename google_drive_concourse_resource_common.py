@@ -59,7 +59,8 @@ def listFilesinFolder(service, folderID, fileName, verbose=False):
         print('Files:')
         for item in items:
             print('{0} ({1}) {2}'.format(item['title'], item['id'], item['mimeType']))
-        return item['id']
+            fileFound = item
+        return fileFound
 
 def create_folder(service, folderName, parentID = None):
     """Creates a folder to use.
@@ -80,7 +81,7 @@ def create_folder(service, folderName, parentID = None):
     file = drive_service.files().insert(body=body).execute()
     print ('Folder Name: {0} ID: {1}' .format(file.get('title'), file.get('id')))
 
-def putFile(service, folderID, filePath, perms, verbose=False):
+def putFile(service, folderID, filePath, verbose=False):
     """Creates a File on a google drive folder.
     Args:
         service: google drive service instance to use
@@ -125,28 +126,31 @@ def putFile(service, folderID, filePath, perms, verbose=False):
         print 'An error occured: %s' % error
         return error
 
-def getPermissions(service, file_id):
-    """Retrieve a list of permissions.
-    Args:
-    service: Drive API service instance.
-    file_id: ID of the file to retrieve permissions for.
-    Returns:
-    List of permissions.
-    """
-    try:
-        permissions = service.permissions().list(fileId=file_id).execute()
-        return permissions.get('items', [])
-    except errors.HttpError, error:
-        print ('An error occurred: {0}' .format(error))
-        return error
 
-def getFile(service, folderID, fileID, verbose=False):
+# Commenting out as we don't need this
+# def getPermissions(service, file_id):
+#     """Retrieve a list of permissions.
+#     Args:
+#     service: Drive API service instance.
+#     file_id: ID of the file to retrieve permissions for.
+#     Returns:
+#     List of permissions.
+#     """
+#     try:
+#         permissions = service.permissions().list(fileId=file_id).execute()
+#         return permissions.get('items', [])
+#     except errors.HttpError, error:
+#         print ('An error occurred: {0}' .format(error))
+#         return error
+
+def getFile(service, folderID, fileID, fileName, verbose=False):
     """Retrieves a File from a google drive Folder. Currently we only
     support binary files so you can not get docs,spreadhseets, etc.
     Args:
         service: google drive service instance to use
         folderID: Parent Folder's ID from which to get the file
         fileID: Id of the file that needs to be retrieved from google drive
+        fileName: Name to use for the local file
         verbose: print debugging information
     Returns:
         File that was requested or error if error occured
@@ -165,7 +169,7 @@ def getFile(service, folderID, fileID, verbose=False):
         print('Headers: {0}' .format(request.headers))
         print('URI: {0}' .format(request.uri))
 
-    media_request = http.MediaIoBaseDownload('test.txt', request)
+    media_request = http.MediaIoBaseDownload(fileName, request)
 
     while True:
         try:
