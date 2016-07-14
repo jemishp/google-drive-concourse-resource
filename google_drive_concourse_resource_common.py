@@ -141,7 +141,8 @@ def getFile(service, folderID, fileID, verbose=False):
     request = drive_service.files().get_media(fileId=fileID)
 
     if verbose:
-        print(request.headers)
+        print('Headers: ' + request.headers)
+        print('URI: ' + request.uri)
 
     media_request = http.MediaIoBaseDownload('test.txt', request)
 
