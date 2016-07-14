@@ -13,6 +13,7 @@ def main():
   fileID=listFilesinFolder(drive_service,fID,fName,True)
   if fileID:
     print fileID
+    get_permissions(drive_service,fID)
     response=getFile(drive_service,fID, fileID, True)
     if isinstance(response,errors.HttpError):
       print('File not retrieved')
