@@ -34,9 +34,9 @@ def listFilesinFolder(service, folderID, verbose=True):
     drive_service=service
 
     if verbose:
-        print('Query = ' + fID + ' in parents')
+        print('Query = ' + folderID + ' in parents')
 
-    results = drive_service.files().list(q="0BzoFwqMR_Vv4ZzZiSWJqcmozNzQ in parents",
+    results = drive_service.files().list(q="'0BzoFwqMR_Vv4ZzZiSWJqcmozNzQ' in parents",
     #results = drive_service.files().list(q="" + folderID + " in parents",
                                         corpus='DEFAULT',
                                         spaces='drive',
