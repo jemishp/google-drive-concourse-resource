@@ -2,7 +2,7 @@ from google_drive_concourse_resource_common import getServiceInstance
 from google_drive_concourse_resource_common import putFile
 from apiclient import errors
 import sys
-import os
+
 
 
 """puts a file onto a google drive folder
@@ -17,8 +17,8 @@ fID='0BzoFwqMR_Vv4ZzZiSWJqcmozNzQ'
 pFile='/tmp/test.tar.gz'
 
 def main():
-  for line in sys.stdin.readlines():
-    print line
+  req=json.load(sys.stdin)
+  print(req)
   drive_service = getServiceInstance()
   response=putFile(drive_service,fID, pFile)
   if isinstance(response,errors.HttpError):
