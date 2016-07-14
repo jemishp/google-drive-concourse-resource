@@ -5,20 +5,24 @@ import json,sys
 
 
 
-"""puts a file onto a google drive folder
+"""Takes a JSON request from stdin and puts a file onto a google drive folder
   Args:
     fID: Folder ID to use for the uploaded file
     pFile: Path to the local file to upload including extension
   Returns:
     File ID of the uploaded file or exits(1) with a message indicating no file uploaded
 """
-
-fID='0BzoFwqMR_Vv4ZzZiSWJqcmozNzQ'
-pFile='/tmp/test.tar.gz'
+fID=''
+pFile=''
 
 def main():
   req=json.load(sys.stdin)
-  print(req['source']['container'])
+  if req:
+    fID=(req['source']['drive_folder_id'])
+    pFile=(req['source']['file_name'])
+  else:
+    print('No suitable request received')
+    sys.exit(1)
   drive_service = getServiceInstance()
   response=putFile(drive_service,fID, pFile)
   if isinstance(response,errors.HttpError):
