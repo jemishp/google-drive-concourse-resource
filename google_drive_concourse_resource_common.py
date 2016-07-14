@@ -87,7 +87,6 @@ def putFile(service, folderID, filePath, verbose=False):
         service: google drive service instance to use
         folderID: Parent Folder's ID in which to create the new file
         filePath: Path to the file that needs to be put on google drive
-        perms: Permissions object to use for the uploading the file
         verbose: print debugging information
     Returns:
         File name and ID of the newly created File or error if error occured

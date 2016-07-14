@@ -1,7 +1,6 @@
 from google_drive_concourse_resource_common import getServiceInstance
 from google_drive_concourse_resource_common import listFilesinFolder
 from google_drive_concourse_resource_common import getFile
-from google_drive_concourse_resource_common import getFileMetadata
 from apiclient import errors
 import sys
 
