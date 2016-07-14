@@ -108,10 +108,12 @@ def putFile(service, folderID, filePath, verbose=False):
     # Set the parent Folder
     if folderID:
         body['parents'] = [{'id': folderID}]
+        #Temporarily adding perms here
+        body['permissions'] = [{'role': 'owner','role': 'user'}]
 
     if verbose:
-        print('Body: ' .format(body))
-        print('Media_Body: ' .format(media_body))
+        print('Body: ' .format(dir(body)))
+        print('Media_Body: ' .format(dir(media_body)))
 
     try:
         file = drive_service.files().insert(
