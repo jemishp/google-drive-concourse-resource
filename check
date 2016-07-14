@@ -6,7 +6,7 @@ fID='0BzoFwqMR_Vv4ZzZiSWJqcmozNzQ'
 
 def main():
   drive_service = getServiceInstance()
-  listFilesinFolder(drive_service,fID,True)
+  listFilesinFolder(drive_service,fID)
 
 if __name__ == '__main__':
   main()
