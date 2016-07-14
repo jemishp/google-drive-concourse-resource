@@ -1,6 +1,8 @@
 from google_drive_concourse_resource_common import getServiceInstance
 from google_drive_concourse_resource_common import listFilesinFolder
 from google_drive_concourse_resource_common import getFile
+from apiclient import errors
+import sys
 
 """Lists a version of a file from a google drive folder"""
 fID='0BzoFwqMR_Vv4ZzZiSWJqcmozNzQ'
@@ -11,7 +13,10 @@ def main():
   fileID=listFilesinFolder(drive_service,fID,fName,True)
   if fileID:
     print fileID
-    getFile(drive_service,fID, fileID, True)
+    response=getFile(drive_service,fID, fileID, True)
+    if isinstance(response,errors):
+      print('File not retrieved')
+      sys.exit(1)
 
 if __name__ == '__main__':
   main()

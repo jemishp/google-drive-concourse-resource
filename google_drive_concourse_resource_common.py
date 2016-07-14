@@ -120,14 +120,15 @@ def putFile(service, folderID, filePath, verbose=False):
         return None
 
 def getFile(service, folderID, fileID, verbose=False):
-    """Retrieves a File from a google drive Folder.
+    """Retrieves a File from a google drive Folder. Currently we only
+    support binary files so you can not get docs,spreadhseets, etc.
     Args:
         service: google drive service instance to use
         folderID: Parent Folder's ID from which to get the file
         fileID: Id of the file that needs to be retrieved from google drive
         verbose: print debugging information
     Returns:
-        File that was requested.
+        File that was requested or error if error occured
     To Do:
         Check if File and folder exist
         Possible check if File is not 0 length before putting it up on google drive
@@ -149,7 +150,7 @@ def getFile(service, folderID, fileID, verbose=False):
           download_progress, done = media_request.next_chunk()
         except errors.HttpError, error:
           print 'An error occurred: %s' % error
-          return
+          return error
         if download_progress:
           print 'Download Progress: %d%%' % int(download_progress.progress() * 100)
         if done:
