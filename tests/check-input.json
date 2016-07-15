@@ -2,6 +2,6 @@
   "source": {
     "container": "con1",
     "drive_folder_id": "your_storage_account",
-    "file_name": "in"
+    "file_name": "test.tar.gz"
   }
 }

@@ -2,13 +2,27 @@ from google_drive_concourse_resource_common import getServiceInstance
 from google_drive_concourse_resource_common import listFilesinFolder
 from google_drive_concourse_resource_common import getFile
 from apiclient import errors
-import sys
+import json,sys
 
+"""Takes a JSON request from stdin and downloads a file onto a local folder
+  Args:
+    fID: Folder ID for the file to download
+    fName: local Path to download the file to (including extension)
+  Returns:
+    File or exits(1) with a message indicating no file was retrieved
+"""
 
-fID='0BzoFwqMR_Vv4ZzZiSWJqcmozNzQ'
-fName='test.tar.gz'
+fID=''
+fName=''
 
 def main():
+  req=json.load(sys.stdin)
+  if req:
+    fID=(req['source']['drive_folder_id'])
+    fName=(req['source']['file_name'])
+  else:
+    print('No suitable request received')
+    sys.exit(1)
   drive_service = getServiceInstance()
   file=listFilesinFolder(drive_service,fID,fName)
   if file:
