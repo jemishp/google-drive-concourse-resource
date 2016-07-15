@@ -1,12 +1,30 @@
 from google_drive_concourse_resource_common import getServiceInstance
 from google_drive_concourse_resource_common import listFilesinFolder
+import json,sys
 
-"""Lists a version of a file from a google drive folder"""
-fID='0BzoFwqMR_Vv4ZzZiSWJqcmozNzQ'
-fName='Test_V1'
+"""Takes a JSON request from stdin and lists matching files
+  Args:
+    fID: Folder ID for the file to look for
+    fName: name of the file to look for (including extension)
+  Returns:
+    An Empty array for the moment till we figure out versioning
+"""
+
+fID=''
+fName=''
+
 def main():
+req=json.load(sys.stdin)
+  if req:
+    fID=(req['source']['drive_folder_id'])
+    fName=(req['source']['file_name'])
+  else:
+    print('No suitable request received')
+    sys.exit(1)
+
   drive_service = getServiceInstance()
   listFilesinFolder(drive_service,fID,fName)
   return []
+
 if __name__ == '__main__':
   main()
