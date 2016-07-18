@@ -6,12 +6,12 @@ Uses google drive as a resource in concourse jobs/tasks as a way to pass output 
 
 **Does not do any version checking**
 
-# Pre-Requisites
+## Pre-Requisites
 
 1. Follow this doc to create a service principal for the app to use and provide domain wide authority: https://developers.google.com/identity/protocols/OAuth2ServiceAccount#callinganapi
 1. You will be using values from the JSON file you downloaded the step above to interact with your drive.
 
-# Source Configuration
+## Source Configuration
 
 * ``drive_client_email``: Required. The Client email for the service principal to use for drive interactions.
 
@@ -23,21 +23,21 @@ Uses google drive as a resource in concourse jobs/tasks as a way to pass output 
 
 * ``drive_folder_id``: Required. The folder **id** for all drive interactions. We are using ID and **NOT** the folder's name.
 
-# Behavior
+## Behavior
 
-``check``: Extract versions from the
+### ``check``: Extract versions from the
 
 Currently we are returning nulls for versioned objects.
 
-``in``: Download a file from google drive
+### ``in``: Download a file from google drive
 
-## Parameters
+#### Parameters
 
 None
 
 
-``out``: Upload a file to google drive
+### ``out``: Upload a file to google drive
 
-## Parameters
+#### Parameters
 
 * ``file_name``: Required. Path to the local file to upload to google drive
