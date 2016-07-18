@@ -19,11 +19,15 @@ def main():
   req=json.load(sys.stdin)
   if req:
     fID=(req['source']['drive_folder_id'])
-    pFile=(req['source']['file_name'])
+    pFile=(req['params']['file_name'])
+    cEmail=(req['source']['gdrive_c_email'])
+    pID=(req['source']['gdrive_p_id'])
+    cID=(req['source']['gdrive_c_id'])
+    pKey=(req['source']['gdrive_p_key'])
   else:
     print('No suitable request received')
     sys.exit(1)
-  drive_service = getServiceInstance()
+  drive_service = getServiceInstance(cEmail,pID,cID,pKey)
   response=putFile(drive_service,fID, pFile)
   if isinstance(response,errors.HttpError):
     print('File Not uploaded')
