@@ -4,7 +4,7 @@ Uses google drive as a resource in concourse jobs/tasks as a way to pass output 
 
 **Only supports tar and txt files for now**
 
-**Does not do any version checking**
+**Does not do any version checking for now**
 
 ## Pre-Requisites
 
