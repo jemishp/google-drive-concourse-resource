@@ -4,7 +4,7 @@ from google_drive_concourse_resource_common import getFile
 from apiclient import errors
 import json,sys
 
-"""Takes a JSON request from stdin and downloads a file onto a local folder
+"""Takes a JSON request from stdin and downloads a file from google-drive onto a local folder
   Args:
     fID: Folder ID for the file to download
     fName: local Path to download the file to (including extension)

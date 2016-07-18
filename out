@@ -5,7 +5,7 @@ import json,sys
 
 
 
-"""Takes a JSON request from stdin and puts a file onto a google drive folder
+"""Takes a JSON request from stdin and puts a local file onto a google drive folder
   Args:
     fID: Folder ID to use for the uploaded file
     pFile: Path to the local file to upload including extension

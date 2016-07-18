@@ -2,7 +2,7 @@ from google_drive_concourse_resource_common import getServiceInstance
 from google_drive_concourse_resource_common import listFilesinFolder
 import json,sys
 
-"""Takes a JSON request from stdin and lists matching files
+"""Takes a JSON request from stdin and lists matching files on a google-drive folder
   Args:
     fID: Folder ID for the file to look for
     fName: name of the file to look for (including extension)
@@ -14,7 +14,7 @@ fID=''
 fName=''
 
 def main():
-req=json.load(sys.stdin)
+  req=json.load(sys.stdin)
   if req:
     fID=(req['source']['drive_folder_id'])
     fName=(req['source']['file_name'])
