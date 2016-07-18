@@ -22,10 +22,10 @@ def main():
   if req:
     fID=(req['source']['drive_folder_id'])
     fName=(req['version']['file_name'])
-    cEmail=(req['source']['gdrive_c_email'])
-    pID=(req['source']['gdrive_p_id'])
-    cID=(req['source']['gdrive_c_id'])
-    pKey=(req['source']['gdrive_p_key'])
+    cEmail=(req['source']['drive_client_email'])
+    pID=(req['source']['drive_private_key_id'])
+    cID=(req['source']['drive_client_id'])
+    pKey=(req['source']['drive_private_key'])
   else:
     print('No suitable request received')
     sys.exit(1)

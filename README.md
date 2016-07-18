@@ -13,15 +13,15 @@ Uses google drive as a resource in concourse jobs/tasks as a way to pass output 
 
 # Source Configuration
 
-* ``google_drive_client_email``: Required. The Client email for the service principal to use for drive interactions.
+* ``drive_client_email``: Required. The Client email for the service principal to use for drive interactions.
 
-* ``google_drive_client_id``: Required. The client id of the service principal to use for drive interactions.
+* ``drive_client_id``: Required. The client id of the service principal to use for drive interactions.
 
-* ``google_drive_private_key_id``: Required. The private key id of the service principal to use for drive interactions.
+* ``drive_private_key_id``: Required. The private key id of the service principal to use for drive interactions.
 
-* ``google_drive_private_key``: Required. The private key of the service principal to use for drive interactions.
+* ``drive_private_key``: Required. The private key of the service principal to use for drive interactions.
 
-* ``google_drive_folder_id``: Required. The folder **id** for all drive interactions. We are using ID and **NOT** the folder's name.
+* ``drive_folder_id``: Required. The folder **id** for all drive interactions. We are using ID and **NOT** the folder's name.
 
 # Behavior
 
@@ -31,4 +31,13 @@ Currently we are returning nulls for versioned objects.
 
 ``in``: Download a file from google drive
 
+## Parameters
+
+None
+
+
 ``out``: Upload a file to google drive
+
+## Parameters
+
+* ``file_name``: Required. Path to the local file to upload to google drive
