@@ -3,6 +3,7 @@
 Uses google drive as a resource in concourse jobs/tasks as a way to pass output from 1 task to another in a given pipeline.
 
 **Only supports tar and txt files for now**
+
 **Does not do any version checking**
 
 # Pre-Requisites
@@ -20,4 +21,14 @@ Uses google drive as a resource in concourse jobs/tasks as a way to pass output 
 
 * ``google_drive_private_key``: Required. The private key of the service principal to use for drive interactions.
 
-* ``google_drive_folder_id``: Required. The folder **id** for all drive interactions. We are using ID and **NOT** the folder's name. 
+* ``google_drive_folder_id``: Required. The folder **id** for all drive interactions. We are using ID and **NOT** the folder's name.
+
+# Behavior
+
+``check``: Extract versions from the
+
+Currently we are returning nulls for versioned objects.
+
+``in``: Download a file from google drive
+
+``out``: Upload a file to google drive
