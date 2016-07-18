@@ -7,23 +7,33 @@ from apiclient import errors
 from apiclient import http
 
 
-def getServiceInstance(user='jpatel', keyFile='concourse-resource.json'):
-    """Creates an authenticated service instance to use
+def getServiceInstance(sEmail, pID, cID, pKey,verbose=False):
+    """Creates an authenticated service instance to use for subsequent requests to google drive
     Args:
-        user: User to impersonate in requests
-        keyFile: file that has the service account credentials
+        sEmail: client_email to use for service account credentials to authenticate with google drive
+        pID: private key id to use for service account credentials to authenticate with google drive
+        cID: client_id to use for service account credentials to authenticate with google drive
+        pKey: private key to use for service account credentials to authenticate with google drive
     Returns:
-        An authenticated service instance
+        An authenticated service instance of google drive v2 API
     """
 
     scopes = ['https://www.googleapis.com/auth/drive','https://www.googleapis.com/auth/drive.file']
-    credentials = ServiceAccountCredentials.from_json_keyfile_name(keyFile, scopes=scopes)
+    key_dict = {'type':'service_account','client_email': sEmail, 'private_key_id':pID , 'client_id': cID, 'private_key': pKey}
+    if verbose:
+        print (str(key_dict))
+        ##Adding a debug print for testing
+        #print(dir(ServiceAccountCredentials))
+
+
+    credentials = ServiceAccountCredentials.from_json_keyfile_dict(key_dict, scopes=scopes)
     # Impersonate a user
-    delegated_credentails = credentials.create_delegated(user + '@pivotal.io')
+    #delegated_credentails = credentials.create_delegated(user + '@pivotal.io')
     # Apply credential headers to all requests made by an an httlib2.Http instance
     http_auth = credentials.authorize(Http())
     # Build a service object for the drive API with the authenticated http instance
     gdriveservice = build('drive', 'v2', http=http_auth)
+
 
     oldq='0B_rb6msCq2WfSVk2QVl6UUk5cFk' # skahler's private folder with no access
     return gdriveservice
