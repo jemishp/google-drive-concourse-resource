@@ -37,15 +37,12 @@ def main():
   drive_service = getServiceInstance(cEmail,pID,cID,pKey)
   file=listFilesinFolder(drive_service,fID,fName)
   if file:
-    response=getFile(drive_service,fID, file['id'], file['title'])
-    if isinstance(response,errors.HttpError):
-      print('File not retrieved',file=sys.stderr)
-      sys.exit(1)
-    else:
-      metadata = []
-      print(json.dumps({"version": {"path": file['title']},
-                      "metadata": metadata
-                      }))
-                      
+    metadata = []
+    print(json.dumps({"version": {"path": file['title']},
+                  "metadata": metadata
+                  }))
+  else:
+    print(json.dumps([]))
+
 if __name__ == '__main__':
   main()
