@@ -43,7 +43,7 @@ def main():
     metadata = []
     print('File ID {0} was uploaded successfully!' .format(response.get('id')),file=sys.stderr)
     print(json.dumps({"version": {"id": response.get('id'),
-                                 "path": response.get('title')},
+                                 "file_name": response.get('title')},
                       "metadata": metadata
                       }))
 if __name__ == '__main__':

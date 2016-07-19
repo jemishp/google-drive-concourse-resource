@@ -27,7 +27,7 @@ def main():
   if req:
     #print(json.dumps(req),file=sys.stderr)
     fID=(req['source']['drive_folder_id'])
-    fName=(req['version']['path'])
+    fName=(req['version']['file_name'])
     cEmail=(req['source']['drive_client_email'])
     pID=(req['source']['drive_private_key_id'])
     cID=(req['source']['drive_client_id'])
@@ -46,6 +46,7 @@ def main():
       print('File not retrieved',file=sys.stderr)
       sys.exit(1)
     else:
+      metadata = []
       print(json.dumps({"version": {"path": file.get('title')},
                       "metadata": metadata
                       }))
