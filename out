@@ -42,7 +42,7 @@ def main():
   else:
     metadata = []
     #print ('File ID {0} ' .format(response.get('id')))
-    print(json.dump({"version": {"id": response.get('id'),
+    print(json.dumps({"version": {"id": response.get('id'),
                                  "path": response.get('title')},
                       "metadata": metadata
                       }))
