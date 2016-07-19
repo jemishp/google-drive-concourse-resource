@@ -6,5 +6,5 @@
     "drive_private_key": "gdrive_priv_key",
     "drive_folder_id": "gdrive_folder_id",
   },
-  "version": { "file_name": "test.tar.gz" }
+  "params": { "file_name": "test.tar.gz" }
 }
