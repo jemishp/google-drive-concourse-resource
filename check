@@ -1,5 +1,6 @@
 #!/usr/local/bin/python
 
+from __future__ import print_function
 from google_drive_concourse_resource_common import getServiceInstance
 from google_drive_concourse_resource_common import listFilesinFolder
 import json,sys
@@ -22,6 +23,7 @@ pKey=''
 def main():
   req=json.load(sys.stdin)
   if req:
+    print(json.dumps(req),file=sys.stderr)
     fID=(req['source']['drive_folder_id'])
     fName=(req['version']['file_name'])
     cEmail=(req['source']['drive_client_email'])
@@ -29,12 +31,21 @@ def main():
     cID=(req['source']['drive_client_id'])
     pKey=(req['source']['drive_private_key'])
   else:
-    print('No suitable request received')
+    print('No suitable request received',file=sys.stderr)
     sys.exit(1)
 
   drive_service = getServiceInstance(cEmail,pID,cID,pKey)
-  listFilesinFolder(drive_service,fID,fName)
-  return []
-
+  file=listFilesinFolder(drive_service,fID,fName)
+  if file:
+    response=getFile(drive_service,fID, file['id'], file['title'])
+    if isinstance(response,errors.HttpError):
+      print('File not retrieved',file=sys.stderr)
+      sys.exit(1)
+    else:
+      metadata = []
+      print(json.dumps({"version": {"path": file['title']},
+                      "metadata": metadata
+                      }))
+                      
 if __name__ == '__main__':
   main()
