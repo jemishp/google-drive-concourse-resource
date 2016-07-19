@@ -25,11 +25,11 @@ def main():
   if req:
     print(json.dumps(req),file=sys.stderr)
     fID=(req['source']['drive_folder_id'])
-    if req['version']['file_name'] in req:
+    if ['version']['file_name'] in req:
       fName=(req['version']['file_name'])
     else:
       print(json.dumps([]))
-      return  
+      return
     cEmail=(req['source']['drive_client_email'])
     pID=(req['source']['drive_private_key_id'])
     cID=(req['source']['drive_client_id'])
