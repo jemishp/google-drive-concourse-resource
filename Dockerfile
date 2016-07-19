@@ -1,6 +1,6 @@
 FROM python:2.7
 
-RUN apt-get update; apt-get -y upgrade; apt-get clean
+RUN apt-get update; apt-get -y upgrade; apt-get autoremove ; apt-get clean
 
 RUN pip install --upgrade google-api-python-client
 

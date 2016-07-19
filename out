@@ -1,5 +1,6 @@
 #!/usr/local/bin/python
 
+from __future__ import print_function
 from google_drive_concourse_resource_common import getServiceInstance
 from google_drive_concourse_resource_common import putFile
 from apiclient import errors
