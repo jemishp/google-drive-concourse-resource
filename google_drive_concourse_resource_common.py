@@ -187,7 +187,7 @@ def getFile(service, folderID, fileID, fileName, verbose=False):
           #print 'An error occurred: %s' % error
           return error
         if download_progress:
-          #print 'Download Progress: %d%%' % int(download_progress.progress() * 100)
+          print 'Download Progress: %d%%' % int(download_progress.progress() * 100)
         if done:
           #print 'Download Complete'
           return
