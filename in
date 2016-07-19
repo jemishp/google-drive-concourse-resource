@@ -26,7 +26,7 @@ def main():
   req=json.load(sys.stdin)
   if req:
     fID=(req['source']['drive_folder_id'])
-    fName=(req['version']['file_name'])
+    fName=(req['params']['file_name'])
     cEmail=(req['source']['drive_client_email'])
     pID=(req['source']['drive_private_key_id'])
     cID=(req['source']['drive_client_id'])
