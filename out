@@ -31,15 +31,19 @@ def main():
     cID=(req['source']['drive_client_id'])
     pKey=(req['source']['drive_private_key'])
   else:
-    print('No suitable request received')
+    print('No suitable request received', file=sys.stderr)
     sys.exit(1)
   drive_service = getServiceInstance(cEmail,pID,cID,pKey)
   response=putFile(drive_service,fID, pFile)
   if isinstance(response,errors.HttpError):
-    print('File Not uploaded')
+    print('File Not Uploaded', file=sys.stderr)
     sys.exit(1)
   else:
-    print ('File ID {0} ' .format(response.get('id')))
-
+    metadata = []
+    #print ('File ID {0} ' .format(response.get('id')))
+    print(json.dump({"version": {"id": response.get('id'),
+                                 "path": response.get('title')},
+                      "metadata": metadata
+                      }))
 if __name__ == '__main__':
   main()
