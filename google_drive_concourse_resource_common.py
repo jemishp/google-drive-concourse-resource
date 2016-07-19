@@ -184,10 +184,10 @@ def getFile(service, folderID, fileID, fileName, verbose=False):
         try:
           download_progress, done = media_request.next_chunk()
         except errors.HttpError, error:
-          print 'An error occurred: %s' % error
+          #print 'An error occurred: %s' % error
           return error
         if download_progress:
-          print 'Download Progress: %d%%' % int(download_progress.progress() * 100)
+          #print 'Download Progress: %d%%' % int(download_progress.progress() * 100)
         if done:
-          print 'Download Complete'
+          #print 'Download Complete'
           return
