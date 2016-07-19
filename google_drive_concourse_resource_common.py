@@ -66,7 +66,7 @@ def listFilesinFolder(service, folderID, fileName, verbose=False):
         print('No files found.')
         return None
     else:
-        print('Files:')
+        #print('Files:')
         for item in items:
             print('{0} ({1}) {2}'.format(item['title'], item['id'], item['mimeType']))
             fileFound = item
@@ -129,10 +129,10 @@ def putFile(service, folderID, filePath, verbose=False):
                                             body=body,
                                             media_body=media_body).execute()
         #Printing for debug only
-        print ('File ID {0} ' .format(file.get('id')))
+        #print ('File ID {0} ' .format(file.get('id')))
         return file
     except errors.HttpError, error:
-        print 'An error occured: %s' % error
+        #print 'An error occured: %s' % error
         return error
 
 
