@@ -41,7 +41,7 @@ def main():
     sys.exit(1)
   else:
     metadata = []
-    print('File ID {0} was uploaded successfully!' .format(response.get('id')),file=stderr)
+    print('File ID {0} was uploaded successfully!' .format(response.get('id')),file=sys.stderr)
     print(json.dumps({"version": {"id": response.get('id'),
                                  "path": response.get('title')},
                       "metadata": metadata
