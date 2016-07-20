@@ -46,5 +46,7 @@ def main():
                                  "file_name": response.get('title')},
                       "metadata": metadata
                       }))
+  print('Out ended',file=sys.stderr)
+
 if __name__ == '__main__':
   main()

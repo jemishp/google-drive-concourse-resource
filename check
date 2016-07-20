@@ -49,5 +49,7 @@ def main():
     resp = []
     print(json.dumps(resp))
 
+  print('Check ended',file=sys.stderr)  
+
 if __name__ == '__main__':
   main()
