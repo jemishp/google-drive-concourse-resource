@@ -122,7 +122,7 @@ def putFile(service, folderID, filePath, verbose=False):
     media_body = http.MediaFileUpload(filePath,mimetype=mime_type,resumable=True)
     body = {
       'title': f,
-      'description': 'Uploaded by concourse task:' + link + '',
+      'description': 'Uploaded by concourse task: \n\n' + link + '',
       'mimeType': mime_type
     }
     # Set the parent Folder
