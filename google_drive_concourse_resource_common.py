@@ -6,6 +6,7 @@ from httplib2 import Http
 from apiclient.discovery import build
 from apiclient import errors
 from apiclient import http
+from datetime import datetime
 
 
 def getServiceInstance(sEmail, pID, cID, pKey,verbose=False):
@@ -68,9 +69,15 @@ def listFilesinFolder(service, folderID, fileName, verbose=False):
         return None
     else:
         #print('Files:')
+        latest = ''
         for item in items:
-            print('{0} ({1}) {2}'.format(item['title'], item['id'], item['mimeType']),file=sys.stderr)
-            fileFound = item
+            print('Name: {0} ID: ({1}) MimeType: {2} ModTime: {3}'.format(item['title'], item['id'], item['mimeType'], item['modifiedTime']),file=sys.stderr)
+            mTime = item['modifiedTime']
+            if latest is None:
+                latest = mTime
+            else if latest < mTime:
+                latest = mTime
+                fileFound = item
         return fileFound
 
 def create_folder(service, folderName, parentID = None):
