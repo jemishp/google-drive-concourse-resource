@@ -4,7 +4,6 @@
     "drive_client_id": "gdrive_client_id",
     "drive_private_key_id": "gdrive_priv_key_id",
     "drive_private_key": "gdrive_priv_key",
-    "drive_folder_id": "gdrive_folder_id",
-  },
-  "version": { "file_name": "test.tar.gz" }
+    "drive_folder_id": "gdrive_folder_id"
+  }
 }

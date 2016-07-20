@@ -29,7 +29,7 @@ def main():
       fName=(req['version']['file_name'])
     else:
       print(json.dumps([]))
-      return
+      sys.exit(0)
     cEmail=(req['source']['drive_client_email'])
     pID=(req['source']['drive_private_key_id'])
     cID=(req['source']['drive_client_id'])
@@ -46,7 +46,8 @@ def main():
                   "metadata": metadata
                   }))
   else:
-    print(json.dumps([]))
+    resp = []
+    print(json.dumps(resp))
 
 if __name__ == '__main__':
   main()
