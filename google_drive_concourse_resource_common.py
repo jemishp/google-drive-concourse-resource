@@ -109,10 +109,20 @@ def putFile(service, folderID, filePath, verbose=False):
     f=os.path.basename(filePath)
     mime_type=''
 
+    # Getting Env info to use for metadata tagging
+
+    atc = os.getenv('ATC_EXTERNAL_URL','DEFAULT_ATC')
+    pipe = os.getenv('BUILD_PIPELINE_NAME','DEFAULT_PIPELINE')
+    job = os.getenv('BUILD_JOB_NAME','DEFAULT_JOB')
+    build = os.getenv('BUILD_NAME','DEFAULT_BUILD_NUM')
+
+    # Creteing a link URL to put in metadata
+    link = atc + '/pipelines/' + pipe + '/jobs/' + job + '/builds/' + build
+
     media_body = http.MediaFileUpload(filePath,mimetype=mime_type,resumable=True)
     body = {
       'title': f,
-      'description': 'Test',
+      'description': 'Uploaded by concourse task:' + link + '',
       'mimeType': mime_type
     }
     # Set the parent Folder
