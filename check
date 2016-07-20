@@ -29,7 +29,7 @@ def main():
       fName=(req['version']['file_name'])
     else:
       print(json.dumps([]))
-      sys.exit(0)
+      #sys.exit(0)
     cEmail=(req['source']['drive_client_email'])
     pID=(req['source']['drive_private_key_id'])
     cID=(req['source']['drive_client_id'])
