@@ -75,7 +75,7 @@ def listFilesinFolder(service, folderID, fileName, verbose=False):
             mTime = item['modifiedTime']
             if latest is None:
                 latest = mTime
-            else if latest < mTime:
+            elif latest < mTime:
                 latest = mTime
                 fileFound = item
         return fileFound
