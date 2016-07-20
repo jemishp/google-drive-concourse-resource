@@ -22,7 +22,7 @@ def getServiceInstance(sEmail, pID, cID, pKey,verbose=False):
     scopes = ['https://www.googleapis.com/auth/drive','https://www.googleapis.com/auth/drive.file']
     key_dict = {'type':'service_account','client_email': sEmail, 'private_key_id':pID , 'client_id': cID, 'private_key': pKey}
     if verbose:
-        print (str(key_dict))
+        print (str(key_dict),file=sys.stderr)
         ##Adding a debug print for testing
         #print(dir(ServiceAccountCredentials))
 
@@ -53,7 +53,7 @@ def listFilesinFolder(service, folderID, fileName, verbose=False):
     drive_service=service
 
     if verbose:
-        print('Query = ' + folderID + ' in parents and name = ' + fileName + '')
+        print('Query = ' + folderID + ' in parents and name = ' + fileName + '',file=sys.stderr)
 
 
     results = drive_service.files().list(q="'" + folderID + "' in parents and title = '" + fileName + "'",
@@ -61,7 +61,7 @@ def listFilesinFolder(service, folderID, fileName, verbose=False):
                                         spaces='drive',
                                         maxResults=10).execute()
     if verbose:
-        print(results)
+        print(results,file=sys.stderr)
     items = results.get('items', [])
     if not items:
         print('No files found.', file=sys.stderr)
@@ -123,7 +123,7 @@ def putFile(service, folderID, filePath, verbose=False):
 
     if verbose:
         #print('Body: ' .format(dir(body)))
-        print('Body: {0}' .format(body))
+        print('Body: {0}' .format(body),file=sys.stderr)
 
     try:
         file = drive_service.files().insert(
@@ -171,13 +171,13 @@ def getFile(service, folderID, fileID, fileName, verbose=False):
     drive_service=service
     local_fd=open(fileName,'w')
     if verbose:
-        print('Received FileID = ' + fileID )
+        print('Received FileID = ' + fileID , file=sys.stderr)
 
     request = drive_service.files().get_media(fileId=fileID)
 
     if verbose:
-        print('Headers: {0}' .format(request.headers))
-        print('URI: {0}' .format(request.uri))
+        print('Headers: {0}' .format(request.headers),file=sys.stderr)
+        print('URI: {0}' .format(request.uri),file=sys.stderr)
 
     media_request = http.MediaIoBaseDownload(local_fd, request)
 
