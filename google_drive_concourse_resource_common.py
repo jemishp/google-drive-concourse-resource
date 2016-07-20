@@ -64,12 +64,12 @@ def listFilesinFolder(service, folderID, fileName, verbose=False):
         print(results)
     items = results.get('items', [])
     if not items:
-        print('No files found.')
+        print('No files found.', file=sys.stderr)
         return None
     else:
         #print('Files:')
         for item in items:
-            print('{0} ({1}) {2}'.format(item['title'], item['id'], item['mimeType']))
+            print('{0} ({1}) {2}'.format(item['title'], item['id'], item['mimeType']),file=sys.stderr)
             fileFound = item
         return fileFound
 
@@ -90,7 +90,7 @@ def create_folder(service, folderName, parentID = None):
     if parentID:
         body['parents'] = [{'id': parentID}]
     file = drive_service.files().insert(body=body).execute()
-    print ('Folder Name: {0} ID: {1}' .format(file.get('title'), file.get('id')))
+    print ('Folder Name: {0} ID: {1}' .format(file.get('title'), file.get('id')),file=sys.stderr)
 
 def putFile(service, folderID, filePath, verbose=False):
     """Creates a File on a google drive folder.
