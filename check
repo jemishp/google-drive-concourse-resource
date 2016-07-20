@@ -42,14 +42,14 @@ def main():
   file=listFilesinFolder(drive_service,fID,fName)
   if file:
     metadata = []
-    print(json.dumps({"version": {"path": file['title']},
+    print(json.dumps({"version": {"path": file.get('title')},
                   "metadata": metadata
                   }))
   else:
     resp = []
     print(json.dumps(resp))
 
-  print('Check ended',file=sys.stderr)  
+  print('Check ended',file=sys.stderr)
 
 if __name__ == '__main__':
   main()
