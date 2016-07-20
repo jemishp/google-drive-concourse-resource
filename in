@@ -25,7 +25,7 @@ pKey=''
 def main():
   req=json.load(sys.stdin)
   if req:
-    print(json.dumps(req),file=sys.stderr)
+    #print(json.dumps(req),file=sys.stderr)
     fID=(req['source']['drive_folder_id'])
     fName=(req['version']['file_name'])
     cEmail=(req['source']['drive_client_email'])
