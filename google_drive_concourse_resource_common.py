@@ -72,7 +72,7 @@ def listFilesinFolder(service, folderID, fileName, verbose=False):
         latest = ''
         for item in items:
             print('Name: {0} ID: ({1}) MimeType: {2} ModTime: {3}'.format(item['title'], item['id'], item['mimeType'], item['modifiedTime']),file=sys.stderr)
-            mTime = item['modifiedTime']
+            mTime = item['modifiedDate']
             if latest is None:
                 latest = mTime
             elif latest < mTime:
