@@ -28,9 +28,11 @@ Uses google drive as a resource in concourse jobs/tasks as a way to pass output 
 
 ### ``check``: Extract versions from the
 
-Currently we are returning the latest file based on modified .
+Currently we are returning the latest file's name based on modified Time of that file.
 
 ### ``in``: Download a file from google drive
+
+  * ``file_name``: The name of the latest version of the file that we need to fetch.
 
 #### Parameters
 
@@ -38,6 +40,8 @@ None
 
 
 ### ``out``: Upload a file to google drive
+
+Given a file specified by ``file_name`` parameter, upload it to a folder in google drive. Currently all uploads go to the root of the folder.
 
 #### Parameters
 
