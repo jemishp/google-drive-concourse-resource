@@ -25,7 +25,7 @@ def main():
   if req:
     print(json.dumps(req),file=sys.stderr)
     fID=(req['source']['drive_folder_id'])
-    if req['version']['file_name'] in req:
+    if req['version'] is not None and if req['version']['file_name'] in req:
       fName=(req['version']['file_name'])
     else:
       print(json.dumps([]))
