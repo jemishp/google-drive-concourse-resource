@@ -50,7 +50,7 @@ def main():
                       "metadata": metadata
                       }))
 
-  print('In ended',file=sys.stderr)
+
 
 if __name__ == '__main__':
   main()
