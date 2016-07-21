@@ -1,4 +1,4 @@
-#!/usr/local/bin/python
+`#!/usr/local/bin/python
 from __future__ import print_function
 import os,sys
 from oauth2client.service_account import ServiceAccountCredentials
@@ -188,7 +188,7 @@ def getFile(service, folderID, fileID, fileName, destPath, verbose=False):
     """
     drive_service=service
     print('Destination received: {0}'.format(destPath),file=sys.stderr)
-    os.chdir(destination)
+    os.chdir(destPath)
     local_fd=open(fileName,'w')
     if verbose:
         print('Received FileID = ' + fileID , file=sys.stderr)
@@ -212,3 +212,4 @@ def getFile(service, folderID, fileID, fileName, destPath, verbose=False):
         if done:
           #print 'Download Complete'
           return
+`
