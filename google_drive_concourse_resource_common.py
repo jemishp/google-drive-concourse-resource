@@ -212,4 +212,3 @@ def getFile(service, folderID, fileID, fileName, destPath, verbose=False):
         if done:
           #print 'Download Complete'
           return
-`
