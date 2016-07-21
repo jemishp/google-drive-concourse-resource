@@ -21,6 +21,7 @@ cEmail=''
 pID=''
 cID=''
 pKey=''
+local_path=''
 
 def main():
   req=json.load(sys.stdin)
@@ -34,8 +35,12 @@ def main():
   else:
     print('No suitable request received', file=sys.stderr)
     sys.exit(1)
+
+  if sys.argv[1] and sys.argv[1] is not None:
+      local_path = sys.argv[1]
+
   drive_service = getServiceInstance(cEmail,pID,cID,pKey)
-  response=putFile(drive_service,fID, pFile)
+  response=putFile(drive_service,fID, local_path + '/' + pFile)
   if isinstance(response,errors.HttpError):
     print('File Not Uploaded', file=sys.stderr)
     sys.exit(1)
