@@ -170,7 +170,7 @@ def putFile(service, folderID, filePath, verbose=False):
 #         print ('An error occurred: {0}' .format(error))
 #         return error
 
-def getFile(service, folderID, fileID, fileName, verbose=False):
+def getFile(service, folderID, fileID, fileName, destPath, verbose=False):
     """Retrieves a File from a google drive Folder. Currently we only
     support binary files so you can not get docs,spreadhseets, etc.
     Args:
@@ -178,6 +178,7 @@ def getFile(service, folderID, fileID, fileName, verbose=False):
         folderID: Parent Folder's ID from which to get the file
         fileID: Id of the file that needs to be retrieved from google drive
         fileName: Name to use for the local file
+        destPath: destination path to use for the local file
         verbose: print debugging information
     Returns:
         File that was requested or error if error occured
@@ -186,7 +187,7 @@ def getFile(service, folderID, fileID, fileName, verbose=False):
         Possible check if File is not 0 length before putting it up on google drive
     """
     drive_service=service
-    local_fd=open(fileName,'w')
+    local_fd=open(destPath + '/' + fileName,'w')
     if verbose:
         print('Received FileID = ' + fileID , file=sys.stderr)
 
