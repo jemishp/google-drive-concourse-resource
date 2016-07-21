@@ -188,7 +188,8 @@ def getFile(service, folderID, fileID, fileName, destPath, verbose=False):
     """
     drive_service=service
     print('Destination received: {0}'.format(destPath),file=sys.stderr)
-    local_fd=open(destPath + '/' + fileName,'w')
+    os.chdir(destination)
+    local_fd=open(fileName,'w')
     if verbose:
         print('Received FileID = ' + fileID , file=sys.stderr)
 
