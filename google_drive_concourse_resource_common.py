@@ -187,6 +187,7 @@ def getFile(service, folderID, fileID, fileName, destPath, verbose=False):
         Possible check if File is not 0 length before putting it up on google drive
     """
     drive_service=service
+    print('Destination received: {0}'.format(destPath),file=sys.stderr)
     local_fd=open(destPath + '/' + fileName,'w')
     if verbose:
         print('Received FileID = ' + fileID , file=sys.stderr)
