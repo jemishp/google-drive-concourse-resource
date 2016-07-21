@@ -2,7 +2,7 @@
 
 from __future__ import print_function
 from google_drive_concourse_resource_common import getServiceInstance
-from google_drive_concourse_resource_common import listFilesinFolder
+#from google_drive_concourse_resource_common import listFilesinFolder
 from google_drive_concourse_resource_common import getFile
 from apiclient import errors
 import json,sys
@@ -17,6 +17,7 @@ import json,sys
 
 fID=''
 fName=''
+fileID=''
 cEmail=''
 pID=''
 cID=''
@@ -27,10 +28,11 @@ def main():
   req=json.load(sys.stdin)
   if req:
     #Debug prints for troubleshooting only
-    print(json.dumps(req),file=sys.stderr)
+    #print(json.dumps(req),file=sys.stderr)
     #print('Arg0: {0} Arg1 {1} '.format(sys.argv[0] , sys.argv[1]),file=sys.stderr)
     fID=(req['source']['drive_folder_id'])
     fName=(req['version']['file_name'])
+    fileID=(req['version']['id'])
     cEmail=(req['source']['drive_client_email'])
     pID=(req['source']['drive_private_key_id'])
     cID=(req['source']['drive_client_id'])
@@ -43,15 +45,15 @@ def main():
       destination = sys.argv[1]
 
   drive_service = getServiceInstance(cEmail,pID,cID,pKey)
-  file=listFilesinFolder(drive_service,fID,fName)
-  if file:
-    response=getFile(drive_service,fID, file['id'], file['title'], destination)
-    if isinstance(response,errors.HttpError):
-      print('File not retrieved',file=sys.stderr)
-      sys.exit(1)
-    else:
-      metadata = []
-      print(json.dumps({"version": {"path": file.get('title')},
+  #file=listFilesinFolder(drive_service,fID,fName)
+  #if file:
+  response=getFile(drive_service,fID, fileID, fName, destination)
+  if isinstance(response,errors.HttpError):
+     print('File not retrieved',file=sys.stderr)
+     sys.exit(1)
+  else:
+     metadata = []
+     print(json.dumps({"version": {"path": file.get('title')},
                       "metadata": metadata
                       }))
 
