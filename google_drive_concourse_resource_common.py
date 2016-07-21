@@ -1,4 +1,4 @@
-`#!/usr/local/bin/python
+#!/usr/local/bin/python
 from __future__ import print_function
 import os,sys
 from oauth2client.service_account import ServiceAccountCredentials
