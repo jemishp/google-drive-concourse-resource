@@ -69,7 +69,7 @@ jobs:
     trigger: true
   - put: gdrive
     params:
-      file_name: "/tmp/build/put/source/azure/ci/cloud_init_script.txt"
+      file_name: "source/azure/ci/cloud_init_script.txt"
 
 - name: test-get-gdrive-conc-resource
   serial: true
