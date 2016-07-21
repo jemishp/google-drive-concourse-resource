@@ -51,7 +51,7 @@ Given a file specified by ``file_name`` parameter, upload it to a folder in goog
 
 ## Example Configuration
 
-The following concourse pipeline downloads a file from github and uploads it to a folder on google drive. Then it downloads it again and prints that file.
+The following concourse pipeline downloads a repository from github and uploads a file from it to a folder on google drive. Then it downloads it again and prints that file.
 
 ```
 
