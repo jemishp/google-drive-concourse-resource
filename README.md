@@ -32,7 +32,7 @@ Currently we are returning the latest file's name based on modified Time of that
 
 ### ``in``: Download a file from google drive
 
-We use the ``file_name`` to write the downloaded file on the local system. 
+We use the ``file_name`` to write the downloaded file on the local system.
 
   * ``file_name``: The name of the latest version of the file that we need to fetch.
 
@@ -93,16 +93,17 @@ jobs:
         - -exc
         - |
           ls -altrh gdrive
+          ls -altrh /tmp/
           cat gdrive/cloud_init_script.txt
 
 resources:
 - name: source
   type: git
   source:
-    uri: {{git-uri}}
+    uri: {{git_uri}}
     branch: master
-    username: {{git-user}}
-    password: {{git-pass}}
+    username: {{git_user}}
+    password: {{git_pass}}
 - name: gdrive
   type: google-drive
   source:
@@ -111,5 +112,6 @@ resources:
     drive_private_key_id: {{gdrive_priv_key_id}}
     drive_private_key: {{gdrive_priv_key}}
     drive_folder_id: {{gdrive_folder_id}}
+
 
 ```
