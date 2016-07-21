@@ -21,6 +21,7 @@ cEmail=''
 pID=''
 cID=''
 pKey=''
+destination=''
 
 def main():
   req=json.load(sys.stdin)
@@ -38,11 +39,13 @@ def main():
     print('No suitable request received', file=sys.stderr)
     sys.exit(1)
 
+  if sys.argv[1] and sys.argv[1] is not None:
+      destination = sys.argv[1]
 
   drive_service = getServiceInstance(cEmail,pID,cID,pKey)
   file=listFilesinFolder(drive_service,fID,fName)
   if file:
-    response=getFile(drive_service,fID, file['id'], file['title'])
+    response=getFile(drive_service,fID, file['id'], file['title'], destination)
     if isinstance(response,errors.HttpError):
       print('File not retrieved',file=sys.stderr)
       sys.exit(1)
