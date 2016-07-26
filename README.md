@@ -6,6 +6,8 @@ Uses google drive as a resource in concourse jobs/tasks as a way to pass output 
 
 **Uses modified Time for versioning so you always retrieve the latest file**
 
+**Uses Google Drive API v2**
+
 ## Pre-Requisites
 
 1. Follow this doc to create a service principal for the app to use and provide domain wide authority: https://developers.google.com/identity/protocols/OAuth2ServiceAccount#callinganapi
