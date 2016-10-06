@@ -43,7 +43,7 @@ def main():
         sys.exit(1)
 
     drive_service = getServiceInstance(cEmail, pID, cID, pKey)
-    file = listFilesinFolder(drive_service, fID, fName)
+    file = listFilesinFolder(drive_service, fID, fName, verbose=True)
     if file:
         metadata = [file.get('description')]
         print(json.dumps({"version": {"file_name": file.get('title'),
