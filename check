@@ -32,8 +32,6 @@ def main():
            and 'file_name' in req['version']:
             fName = (req['version']['file_name'])
         elif 'file_name' in req['source']:
-            print ('File: {0}'.format(req['source']['file_name']),
-                   file=sys.stdout)
             fName = req['source']['file_name']
         else:
             print(json.dumps([]))
@@ -47,7 +45,7 @@ def main():
         sys.exit(1)
 
     drive_service = getServiceInstance(cEmail, pID, cID, pKey)
-    file = listFilesinFolder(drive_service, fID, fName, verbose=True)
+    file = listFilesinFolder(drive_service, fID, fName)
     if file:
         metadata = [file.get('description')]
         print(json.dumps({"version": {"file_name": file.get('title'),
