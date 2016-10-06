@@ -32,7 +32,7 @@ def main():
            and 'file_name' in req['version']:
             fName = (req['version']['file_name'])
         elif 'file_name' in req['source']:
-            fName = req['source']['file_name']
+            fName = (req['source']['file_name'])
         else:
             print(json.dumps([]))
             sys.exit(0)
