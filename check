@@ -3,9 +3,11 @@
 from __future__ import print_function
 from google_drive_concourse_resource_common import getServiceInstance
 from google_drive_concourse_resource_common import listFilesinFolder
-import json,sys
+import json
+import sys
 
-"""Takes a JSON request from stdin and lists matching files on a google-drive folder
+"""Takes a JSON request from stdin and lists matching files on a google-drive \
+folder
   Args:
     fID: Folder ID for the file to look for
     fName: name of the file to look for (including extension)
@@ -13,40 +15,42 @@ import json,sys
     An Empty array for the moment till we figure out versioning
 """
 
-fID=''
-fName=''
-cEmail=''
-pID=''
-cID=''
-pKey=''
+fID = ''
+fName = ''
+cEmail = ''
+pID = ''
+cID = ''
+pKey = ''
+
 
 def main():
-  req=json.load(sys.stdin)
-  if req:
-    #print(json.dumps(req),file=sys.stderr)
-    fID=(req['source']['drive_folder_id'])
-    if 'version' in req and req['version'] is not None and req['version']['file_name'] in req:
-      fName=(req['version']['file_name'])
+    req = json.load(sys.stdin)
+    if req:
+        print(json.dumps(req), file=sys.stderr)
+        fID = (req['source']['drive_folder_id'])
+        if 'version' in req and req['version'] is not None \
+           and 'file_name' in req['version']:
+            fName = (req['version']['file_name'])
+        else:
+            print(json.dumps([]))
+            sys.exit(0)
+        cEmail = (req['source']['drive_client_email'])
+        pID = (req['source']['drive_private_key_id'])
+        cID = (req['source']['drive_client_id'])
+        pKey = (req['source']['drive_private_key'])
     else:
-      print(json.dumps([]))
-      sys.exit(0)
-    cEmail=(req['source']['drive_client_email'])
-    pID=(req['source']['drive_private_key_id'])
-    cID=(req['source']['drive_client_id'])
-    pKey=(req['source']['drive_private_key'])
-  else:
-    print('No suitable request received',file=sys.stderr)
-    sys.exit(1)
+        print('No suitable request received', file=sys.stderr)
+        sys.exit(1)
 
-  drive_service = getServiceInstance(cEmail,pID,cID,pKey)
-  file=listFilesinFolder(drive_service,fID,fName)
-  if file:
-    metadata = []
-    print(json.dumps({"version": {"path": file.get('title')},
-                  "metadata": metadata
-                  }))
-  else:
-    print(json.dumps([]))
+    drive_service = getServiceInstance(cEmail, pID, cID, pKey)
+    file = listFilesinFolder(drive_service, fID, fName)
+    if file:
+        metadata = []
+        print(json.dumps({"version": {"path": file.get('title')},
+                          "metadata": metadata
+                          }))
+    else:
+        print(json.dumps([]))
 
 if __name__ == '__main__':
-  main()
+    main()
