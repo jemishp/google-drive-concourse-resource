@@ -56,7 +56,7 @@ def main():
         #                  }))
         print(json.dumps({"version": {"file_name": file.get('title')}}))
     else:
-        print(json.dumps([]))
+        print(json.dumps([" "]))
 
 if __name__ == '__main__':
     main()
