@@ -54,10 +54,10 @@ def main():
         #                               },
         #                   "metadata": metadata
         #                  }))
-        print(json.dumps({"version": {"file_name": file.get('title')}},
-                         indent=4, separators=(',', ': ')))
+        json.dump({"version": {"file_name": file.get('title')}}, fp=sys.stdout)
     else:
-        print(json.dumps([]))
+        json.dump([], fp=sys.stdout)
+
 
 if __name__ == '__main__':
     main()
