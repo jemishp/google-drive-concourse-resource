@@ -50,9 +50,10 @@ def main():
         # metadata = [file.get('description')]
         # print('File: {0} '.format(file.get('id')), file=sys.stderr)
         # metadata = json.dumps([])
-        print(json.dumps({"version": {"file_name": file.get('title'),
-                                      "id": file.get('id')}
-                          }))
+        # print(json.dumps({"version": {"file_name": file.get('title'),
+        #                              "id": file.get('id')}
+        #                  }))
+        print ('Here', file=sys.stderr)
     else:
         print(json.dumps([]))
 
