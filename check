@@ -54,7 +54,7 @@ def main():
                                       "id": file.get('id')}
                           }))
     else:
-        json.dump([], fp=sys.stdout)
+        print(json.dumps([]))
 
 
 if __name__ == '__main__':

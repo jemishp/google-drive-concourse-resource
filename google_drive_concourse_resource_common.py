@@ -65,7 +65,7 @@ def listFilesinFolder(service, folderID, fileName, verbose=False):
         print(results,file=sys.stderr)
     items = results.get('items', [])
     if not items:
-        print('No files found.', file=sys.stderr)
+        # print('No files found.', file=sys.stderr)
         return None
     else:
         #print('Files:')
