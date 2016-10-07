@@ -45,7 +45,7 @@ def main():
       destination = sys.argv[1]
 
   drive_service = getServiceInstance(cEmail,pID,cID,pKey)
-  response=getFile(drive_service,fID, fileID, fName, destination, verbose=True)
+  response=getFile(drive_service,fID, fileID, fName, destination)
   if isinstance(response,errors.HttpError):
      print('File not retrieved',file=sys.stderr)
      sys.exit(1)
