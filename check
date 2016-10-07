@@ -54,8 +54,8 @@ def main():
         #                               },
         #                   "metadata": metadata
         #                  }))
-        print(json.dumps([{"version": {"file_name": file.get('title')}}],
-                         indent=4, separators=(',', ':')))
+        print(json.dumps({"version": {"file_name": file.get('title')}},
+                         indent=4, separators=(',', ': ')))
     else:
         print(json.dumps([]))
 
