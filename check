@@ -54,7 +54,8 @@ def main():
         #                               },
         #                   "metadata": metadata
         #                  }))
-        json.dump({"version": {"file_name": file.get('title')}}, fp=sys.stdout)
+        json.dump({"version": {"file_name": file.get('title'),
+        "id": file.get('id')}}, fp=sys.stdout)
     else:
         json.dump([], fp=sys.stdout)
 
