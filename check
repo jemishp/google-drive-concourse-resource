@@ -48,12 +48,13 @@ def main():
     file = listFilesinFolder(drive_service, fID, fName)
     if file:
         # metadata = [file.get('description')]
-        metadata = json.dumps([])
-        print(json.dumps({"version": {"file_name": file.get('title'),
-                                      "id": file.get('id')
-                                      },
-                          "metadata": metadata
-                          }))
+        # metadata = json.dumps([])
+        # print(json.dumps({"version": {"file_name": file.get('title'),
+        #                               "id": file.get('id')
+        #                               },
+        #                   "metadata": metadata
+        #                  }))
+        print(json.dumps({"version": {"file_name": file.get('title')}}))
     else:
         print(json.dumps([]))
 
