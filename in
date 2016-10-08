@@ -50,10 +50,8 @@ def main():
      print('File not retrieved',file=sys.stderr)
      sys.exit(1)
   else:
-     metadata = []
-     print(json.dumps([{"path": fName,
-                      "metadata": metadata
-                        }]))
+     # metadata = []
+     print(json.dumps([{"path": fName}]))
 
 
 
