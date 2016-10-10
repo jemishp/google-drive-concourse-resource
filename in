@@ -57,7 +57,7 @@ def main():
         # metadata = metadata.replace('\n', ' ')
         # metadata = []
         print(json.dumps([[fName, fName,
-                           []])
+                         []]]))
 
 
 if __name__ == '__main__':
