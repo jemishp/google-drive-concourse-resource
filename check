@@ -49,11 +49,12 @@ def main():
     if response:
         # metadata = [file.get('description')]
         # print('File: {0} '.format(file.get('id')), file=sys.stderr)
-        # metadata = json.dumps([response.get('description')])
+        metadata = response.get('description')
+        metadata = metadata.replace('\n', ' ')
         print(json.dumps([{
                            "file_name": response.get('title'),
                            "id": response.get('id'),
-                           "metadata": response.get('description')}]))
+                           "metadata": metadata}]))
         # print ('Here', file=sys.stderr)
     else:
         print(json.dumps([]))
