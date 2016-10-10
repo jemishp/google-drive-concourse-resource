@@ -52,7 +52,7 @@ def main():
   else:
      metadata = []
      print(json.dumps([{"path": fName}],
-                      "metadata": metadata))
+                      ["metadata": metadata]))
 
 
 
