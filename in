@@ -51,8 +51,8 @@ def main():
       sys.exit(1)
   else:
      metadata = []
-     print(json.dumps([{"path": fName}],
-                      ["metadata": metadata]))
+     print(json.dumps([{"path": fName},
+                      {"metadata": metadata}]))
 
 
 
