@@ -52,10 +52,15 @@ def main():
     if isinstance(response, errors.HttpError):
         print('File not retrieved', file=sys.stderr)
         sys.exit(1)
-    # else:
-    #     metadata = json.dumps([])
-    #     print(json.dumps([{"path": fName},
-    #                       [metadata]]))
+    else:
+        #     metadata = json.dumps([])
+        #     print(json.dumps([{"path": fName},
+        #                       [metadata]]))
+        metadata = response.get('description')
+        metadata = metadata.replace('\n', ' ')
+        print(json.dumps([{"file_name": response.get('title'),
+                           "id": response.get('id')},
+                         [{"metadata": metadata}]]))
 
 
 if __name__ == '__main__':

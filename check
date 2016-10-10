@@ -55,8 +55,7 @@ def main():
         # metadata = []
         print(json.dumps([{
                            "file_name": response.get('title'),
-                           "id": response.get('id')},
-                         [{"metadata": metadata}]]))
+                           "id": response.get('id')}]))
         # print ('Here', file=sys.stderr)
     else:
         print(json.dumps([]))
