@@ -57,7 +57,7 @@ def main():
         # metadata = metadata.replace('\n', ' ')
         metadata = []
         print(json.dumps([{"file_name": fName},
-                         [{"metadata": metadata}]]))
+                         metadata]))
 
 
 if __name__ == '__main__':
