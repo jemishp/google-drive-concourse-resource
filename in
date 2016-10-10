@@ -55,7 +55,7 @@ def main():
     else:
         metadata = json.dumps([])
         print(json.dumps([{"path": fName},
-                          {"metadata": metadata}]))
+                          [metadata]]))
 
 
 if __name__ == '__main__':
