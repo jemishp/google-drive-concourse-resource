@@ -55,7 +55,7 @@ def main():
     else:
         # metadata = response.get('description')
         # metadata = metadata.replace('\n', ' ')
-        metadata = ''
+        metadata = []
         print(json.dumps([{"file_name": fName},
                          [{metadata}]]))
 
