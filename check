@@ -53,7 +53,7 @@ def main():
         print(json.dumps([{
                            "file_name": response.get('title'),
                            "id": response.get('id'),
-                           "metadata": [response.get('description')]}]))
+                           "metadata": response.get('description')}]))
         # print ('Here', file=sys.stderr)
     else:
         print(json.dumps([]))
