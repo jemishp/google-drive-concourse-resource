@@ -55,9 +55,10 @@ def main():
     else:
         # metadata = response.get('description')
         # metadata = metadata.replace('\n', ' ')
-        metadata_str = '{"metadata": []}'
+        # metadata_str = '{"metadata": []}'
+        metadata_str = '[]'
         metadata = json.loads(metadata_str)
-        print(json.dumps([{"version": [{"path": fName, "path2": fName}]}]))
+        print(json.dumps([{"path": fName, "path2": fName}]))
         print(json.dumps([metadata]))
 
 
