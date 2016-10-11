@@ -57,7 +57,8 @@ def main():
         # metadata = metadata.replace('\n', ' ')
         metadata_str = '{"metadata": []}'
         metadata = json.loads(metadata_str)
-        print(json.dumps([[{"path": fName, "path2": fName}], metadata]))
+        print(json.dumps([{"version": [{"path": fName, "path2": fName}]},
+                          metadata]))
 
 
 if __name__ == '__main__':
