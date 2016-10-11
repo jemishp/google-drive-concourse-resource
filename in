@@ -59,7 +59,7 @@ def main():
         metadata_str = '[]'
         metadata = json.loads(metadata_str)
         print(json.dumps([{"path": fName, "path2": fName}]))
-        print(json.dumps([metadata]))
+        print(json.dumps(metadata))
 
 
 if __name__ == '__main__':
