@@ -60,8 +60,8 @@ def main():
         metadata = json.loads(metadata_str)
         print(json.dump({"version": {"path": fName},
                         "metadata": metadata}, fp=sys.stderr))
-        print(json.dump({"version": {"path": fName},
-                        "metadata": metadata}, fp=sys.stdout))
+        print(json.dumps({"version": {"path": fName},
+                         "metadata": metadata}))
 
 
 if __name__ == '__main__':
