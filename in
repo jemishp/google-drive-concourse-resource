@@ -55,9 +55,11 @@ def main():
     else:
         # metadata = response.get('description')
         # metadata = metadata.replace('\n', ' ')
-        metadata = []
-        print(json.dumps([{"path": fName, "path2": fName}]))
-        print(json.dumps(metadata))
+        version_str = '[{"path": fName, "path2": fName}]'
+        version = json.loads(version_str)
+        metadata_str = '{"metadata": []}'
+        metadata = json.loads(metadata_str)
+        print(json.dumps([version, metadata]))
 
 
 if __name__ == '__main__':
