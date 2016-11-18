@@ -31,8 +31,8 @@ def main():
     req = json.load(sys.stdin)
     if req:
         # Debug prints for troubleshooting only
-        print(json.dumps(req), file=sys.stderr)
-        print('Arg0: {0} Arg1 {1} '.format(sys.argv[0], sys.argv[1]),
+        # print(json.dumps(req), file=sys.stderr)
+        # print('Arg0: {0} Arg1 {1} '.format(sys.argv[0], sys.argv[1]),
               file=sys.stderr)
         if 'source' in req and req['source'] is not None:
             fID = (req['source']['drive_folder_id'])
