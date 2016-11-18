@@ -2,6 +2,7 @@
 
 from __future__ import print_function
 from google_drive_concourse_resource_common import getServiceInstance
+from google_drive_concourse_resource_common import listFilesinFolder
 from google_drive_concourse_resource_common import getFile
 from apiclient import errors
 import json
@@ -33,13 +34,31 @@ def main():
         print(json.dumps(req), file=sys.stderr)
         print('Arg0: {0} Arg1 {1} '.format(sys.argv[0], sys.argv[1]),
               file=sys.stderr)
-        fID = (req['source']['drive_folder_id'])
-        fName = (req['version']['file_name'])
-        fileID = (req['version']['id'])
-        cEmail = (req['source']['drive_client_email'])
-        pID = (req['source']['drive_private_key_id'])
-        cID = (req['source']['drive_client_id'])
-        pKey = (req['source']['drive_private_key'])
+        if 'source' in req and req['source'] is not None:
+            fID = (req['source']['drive_folder_id'])
+            cEmail = (req['source']['drive_client_email'])
+            pID = (req['source']['drive_private_key_id'])
+            cID = (req['source']['drive_client_id'])
+            pKey = (req['source']['drive_private_key'])
+        else:
+            print('No source in request', file=sys.stderr)
+            sys.exit(1)
+        if 'version' in req and req['version'] is not None:
+            if 'file_name' in req['version']:
+                fName = (req['version']['file_name'])
+            elif 'file_name' in req['source']:
+                fName = (req['source']['file_name'])
+            if 'id' in req['version']:
+                fileID = (req['version']['id'])
+            else:
+                drive_service = getServiceInstance(cEmail, pID, cID, pKey)
+                response = listFilesinFolder(drive_service, fID, fName)
+                if response:
+                    fName = response.get('title')
+                    fileID = response.get('id')
+        else:
+            print('No version in request', file=sys.stderr)
+            sys.exit(1)
     else:
         print('No suitable request received', file=sys.stderr)
         sys.exit(1)
@@ -58,9 +77,11 @@ def main():
         # metadata_str = '{"metadata": []}'
         metadata_str = '[]'
         metadata = json.loads(metadata_str)
-        print(json.dumps({"version": {"path": fName},
+        print(json.dumps({"version": {"file_name": fName,
+                                      "id": fileID},
                          "metadata": metadata}), file=sys.stderr)
-        print(json.dumps({"version": {"path": fName},
+        print(json.dumps({"version": {"file_name": fName,
+                                      "id": fileID},
                          "metadata": metadata}), file=sys.stdout)
 
 
