@@ -33,7 +33,7 @@ def main():
         # Debug prints for troubleshooting only
         # print(json.dumps(req), file=sys.stderr)
         # print('Arg0: {0} Arg1 {1} '.format(sys.argv[0], sys.argv[1]),
-              file=sys.stderr)
+        #      file=sys.stderr)
         if 'source' in req and req['source'] is not None:
             fID = (req['source']['drive_folder_id'])
             cEmail = (req['source']['drive_client_email'])
@@ -73,6 +73,8 @@ def main():
         sys.exit(1)
     else:
         # metadata = response.get('description')
+        # metadata = metadata.split()
+        # print('{0}'.format(json.dumps(metadata)), file=sys.stderr)
         # metadata = metadata.replace('\n', ' ')
         # metadata_str = '{"metadata": []}'
         metadata_str = '[]'
