@@ -47,10 +47,12 @@ def main():
     drive_service = getServiceInstance(cEmail, pID, cID, pKey)
     response = listFilesinFolder(drive_service, fID, fName)
     if response:
+        # print(response.get('description'), file=sys.stderr)
         # metadata = [file.get('description')]
         # print('File: {0} '.format(file.get('id')), file=sys.stderr)
-        metadata = response.get('description')
-        metadata = metadata.replace('\n', ' ')
+        if response.get('description'):
+            metadata = response.get('description')
+            metadata = metadata.replace('\n', ' ')
         # metadata = metadata.replace(':', '')
         # metadata = []
         print(json.dumps([{
