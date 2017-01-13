@@ -43,6 +43,7 @@ def main():
   response=putFile(drive_service,fID, local_path + '/' + pFile)
   if isinstance(response,errors.HttpError):
     print('File Not Uploaded', file=sys.stderr)
+    print(response, file=sys.stderr)
     sys.exit(1)
   else:
     metadata = []
