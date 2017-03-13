@@ -195,6 +195,10 @@ def getFile(service, folderID, fileID, fileName, destPath, verbose=False):
         print('Destination received: {0}'.format(destPath),file=sys.stderr)
     request = drive_service.files().get_media(fileId=fileID)
 
+    alternateLinkFilePath= os.path.join(destPath, 'filelink.txt')
+    fileUrlRequest = drive_service.files().get(fileId=fileID).execute()
+    fileDownloadUrl = fileUrlRequest['webContentLink']
+
     if verbose:
         print('Headers: {0}' .format(request.headers),file=sys.stderr)
         print('URI: {0}' .format(request.uri),file=sys.stderr)
@@ -211,4 +215,7 @@ def getFile(service, folderID, fileID, fileName, destPath, verbose=False):
           print('Download Progress: %d%%' % int(download_progress.progress() * 100), file=sys.stderr)
         if done:
           #print 'Download Complete'
+          with open(alternateLinkFilePath, 'w') as fh:
+            fh.write(fileDownloadUrl)
+          print('Download Artifacts: {0}'.format(fileDownloadUrl), file=sys.stderr)
           return
